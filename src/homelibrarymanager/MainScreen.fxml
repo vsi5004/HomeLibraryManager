@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homelibrarymanager.MainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="761.0" prefWidth="1174.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homelibrarymanager.MainScreenController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+      <BorderPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="1153.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="71.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/HLM_Logo.png" />
+                     </image>
+                  </ImageView>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="LB_UserGreeting" alignment="CENTER" contentDisplay="CENTER" text="Hello User!" />
+                        <Button fx:id="BT_UserLogOut" mnemonicParsing="false" onMouseClicked="#HandleBT_UserLogOut" prefHeight="25.0" prefWidth="78.0" text="Log out" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="All Media">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="641.0" prefWidth="915.0" />
+                  </content>
+                </Tab>
+                <Tab text="Collections">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+         <right>
+            <SplitPane dividerPositions="0.4880239520958084" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Label fx:id="LB_Sort" layoutX="14.0" layoutY="14.0" text="Sort" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Label fx:id="LB_Search" layoutX="14.0" layoutY="14.0" text="Search" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </right>
+         <left>
+            <Accordion prefHeight="377.0" prefWidth="143.0" BorderPane.alignment="CENTER">
+              <panes>
+                <TitledPane animated="false" prefHeight="620.0" prefWidth="120.0" text="Media">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="107.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" text="Add Media" />
+                              <ComboBox fx:id="CB_MediaType" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="113.0" promptText="Type" />
+                              <Button fx:id="BT_AddMedia" layoutX="13.0" layoutY="112.0" mnemonicParsing="false" onMouseClicked="#HandleBT_AddMediaClicked" text="Add Media" />
+                              <TextField fx:id="TF_MediaTitle" layoutX="14.0" layoutY="76.0" prefHeight="25.0" prefWidth="113.0" text="Title" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Collections">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Users">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="BT_ManageUsers" layoutX="15.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#HandleBT_ManageUsersClicked" text="Manage Users" />
+                              <Button fx:id="BT_AddUser" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#HandleBT_AddUserClicked" text="Add New User" />
+                              <Button fx:id="BT_EditUserInfo" layoutX="15.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#HandleBT_EditUserInfoClicked" prefHeight="25.0" prefWidth="93.0" text="Edit Info" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+              </panes>
+            </Accordion>
+         </left>
+      </BorderPane>
     </children>
 </AnchorPane>
