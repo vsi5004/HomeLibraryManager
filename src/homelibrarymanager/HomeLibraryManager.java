@@ -31,18 +31,28 @@ public class HomeLibraryManager extends Application {
     
     public void gotoMainScreen(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-        
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }
     
     public void gotoLoginScreen(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
-        
         Scene scene = new Scene(root);
-        
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void gotoUserScreen(Stage stage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("UserScreen.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void gotoMediaScreen(Stage stage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("MediaScreen.fxml"));
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

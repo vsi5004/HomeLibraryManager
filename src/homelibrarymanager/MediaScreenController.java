@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Ivan
  */
-public class UserScreenController implements Initializable {
+public class MediaScreenController implements Initializable {
     HomeLibraryManager manager = new HomeLibraryManager();
     /**
      * Initializes the controller class.

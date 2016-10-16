@@ -23,8 +23,6 @@ import javafx.stage.Stage;
  */
 public class MainScreenController implements Initializable {
     
-    private Label label;
-    @FXML
     private ComboBox<?> CB_MediaType;
     @FXML
     private Button BT_AddMedia;
@@ -46,19 +44,16 @@ public class MainScreenController implements Initializable {
     private Button BT_UserLogOut;
     
     HomeLibraryManager manager = new HomeLibraryManager();
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-    
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
     @FXML
-    private void HandleBT_AddMediaClicked(MouseEvent event) {
+    private void HandleBT_AddMediaClicked(MouseEvent event) throws Exception {
+        Stage stage = (Stage) BT_AddMedia.getScene().getWindow();
+        manager.gotoMediaScreen(stage);
     }
 
     @FXML
@@ -66,7 +61,9 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
-    private void HandleBT_AddUserClicked(MouseEvent event) {
+    private void HandleBT_AddUserClicked(MouseEvent event) throws Exception {
+        Stage stage = (Stage) BT_AddUser.getScene().getWindow();
+        manager.gotoUserScreen(stage);
     }
 
     @FXML
