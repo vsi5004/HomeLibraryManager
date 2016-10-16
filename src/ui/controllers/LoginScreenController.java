@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package homelibrarymanager;
+package ui.controllers;
 
+import homelibrarymanager.HomeLibraryManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
