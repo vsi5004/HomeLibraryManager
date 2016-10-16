@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homelibrarymanager.LoginScreenController">
-    
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homelibrarymanager.LoginScreenController">
+   <children>
+      <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="520.0">
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" prefHeight="385.0" prefWidth="510.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/HLM_Login.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <TextField fx:id="TF_Username" text="Username">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField fx:id="TF_Password" text="Password">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <Label fx:id="LB_LoginError" text="" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="BT_Login" mnemonicParsing="false" onMouseClicked="#HandleBT_loginClicked" text="Log In" />
+                        <Button fx:id="BT_NewUser" mnemonicParsing="false" onMouseClicked="#HandleBT_NewUserClicked" text="New User" />
+                        <Button fx:id="BT_ForgotPassword" mnemonicParsing="false" onMouseClicked="#HandleBT_ForgotPassword" text="Forgot Password" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>
