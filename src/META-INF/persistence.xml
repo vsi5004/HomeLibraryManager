@@ -4,7 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>dbClasses.AppUser</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.19:3306/HomeLibraryManager?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ivaniakimenko.ddns.net:3306/HomeLibraryManager?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="HLMuser"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="AmazingPi"/>
