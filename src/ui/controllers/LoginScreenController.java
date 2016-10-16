@@ -5,8 +5,12 @@
  */
 package ui.controllers;
 
+import dbClasses.AppUser;
+import dbClasses.AppUserJpaController;
 import homelibrarymanager.HomeLibraryManager;
 import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +22,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  * FXML Controller class
@@ -45,13 +51,29 @@ public class LoginScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        LB_LoginError.setText("");
     }    
 
     @FXML
     private void HandleBT_loginClicked(MouseEvent event) throws Exception {
-        Stage stage = (Stage) BT_Login.getScene().getWindow();
-        manager.gotoMainScreen(stage);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
+        AppUserJpaController jpaUser = new AppUserJpaController(emf);
+        List<AppUser> users = jpaUser.findAppUserEntities();
+
+        for (AppUser p : users) {
+            if(Objects.equals(TF_Username.getText(), p.getUsername()) && Objects.equals(TF_Password.getText(), p.getUserPassword())){
+                Stage stage = (Stage) BT_Login.getScene().getWindow();
+                manager.gotoMainScreen(stage);
+                break;
+            }
+            else{
+                TF_Password.clear();
+                LB_LoginError.setText("Your Username or Password doesn't match!");
+            }
+        }
+        
+        
+        
     }
 
     @FXML

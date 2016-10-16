@@ -14,7 +14,7 @@
       <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="520.0">
          <children>
             <Region HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" prefHeight="385.0" prefWidth="510.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" prefHeight="385.0" prefWidth="510.0">
                <children>
                   <ImageView fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                      <image>
