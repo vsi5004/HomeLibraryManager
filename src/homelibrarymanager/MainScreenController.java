@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -44,6 +45,8 @@ public class MainScreenController implements Initializable {
     @FXML
     private Button BT_UserLogOut;
     
+    HomeLibraryManager manager = new HomeLibraryManager();
+    
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
@@ -71,7 +74,9 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
-    private void HandleBT_UserLogOut(MouseEvent event) {
+    private void HandleBT_UserLogOut(MouseEvent event) throws Exception {
+        Stage stage = (Stage) BT_UserLogOut.getScene().getWindow();
+        manager.gotoLoginScreen(stage);
     }
     
 }

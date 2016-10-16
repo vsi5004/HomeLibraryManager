@@ -7,6 +7,8 @@ package homelibrarymanager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -33,6 +36,8 @@ public class LoginScreenController implements Initializable {
     private Button BT_NewUser;
     @FXML
     private Button BT_ForgotPassword;
+    
+    HomeLibraryManager manager = new HomeLibraryManager();
 
     /**
      * Initializes the controller class.
@@ -43,7 +48,9 @@ public class LoginScreenController implements Initializable {
     }    
 
     @FXML
-    private void HandleBT_loginClicked(MouseEvent event) {
+    private void HandleBT_loginClicked(MouseEvent event) throws Exception {
+        Stage stage = (Stage) BT_Login.getScene().getWindow();
+        manager.gotoMainScreen(stage);
     }
 
     @FXML

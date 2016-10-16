@@ -19,12 +19,7 @@ public class HomeLibraryManager extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+        gotoLoginScreen(stage);
     }
 
     /**
@@ -32,6 +27,24 @@ public class HomeLibraryManager extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    public void gotoMainScreen(Stage stage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void gotoLoginScreen(Stage stage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
     
 }
