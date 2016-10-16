@@ -7,6 +7,8 @@ package homelibrarymanager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +25,7 @@ import javafx.stage.Stage;
  */
 public class MainScreenController implements Initializable {
     
-    private ComboBox<?> CB_MediaType;
+    private ComboBox<String> CB_MediaType;
     @FXML
     private Button BT_AddMedia;
     @FXML
@@ -47,7 +49,7 @@ public class MainScreenController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
 
     @FXML
@@ -67,7 +69,9 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
-    private void HandleBT_EditUserInfoClicked(MouseEvent event) {
+    private void HandleBT_EditUserInfoClicked(MouseEvent event) throws Exception {
+        Stage stage = (Stage) BT_EditUserInfo.getScene().getWindow();
+        manager.gotoUserScreen(stage);
     }
 
     @FXML
