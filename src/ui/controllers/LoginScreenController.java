@@ -65,15 +65,10 @@ public class LoginScreenController implements Initializable {
                 Stage stage = (Stage) BT_Login.getScene().getWindow();
                 manager.gotoMainScreen(stage);
                 break;
-            }
-            else{
-                TF_Password.clear();
-                LB_LoginError.setText("Your Username or Password doesn't match!");
-            }
+            }     
         }
-        
-        
-        
+        TF_Password.clear();
+        LB_LoginError.setText("Your Username or Password doesn't match!");
     }
 
     @FXML
