@@ -6,6 +6,7 @@
 package ui.controllers;
 
 import homelibrarymanager.HomeLibraryManager;
+import homelibrarymanager.LoggedInUser;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -50,7 +51,7 @@ public class MainScreenController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        LB_UserGreeting.setText("Hello, " + LoggedInUser.getUserName());
     }    
 
     @FXML

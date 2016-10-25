@@ -8,6 +8,7 @@ package ui.controllers;
 import dbClasses.AppUser;
 import dbClasses.AppUserJpaController;
 import homelibrarymanager.HomeLibraryManager;
+import homelibrarymanager.LoggedInUser;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -63,6 +64,8 @@ public class LoginScreenController implements Initializable {
         for (AppUser p : users) {
             if(Objects.equals(TF_Username.getText(), p.getUsername()) && Objects.equals(TF_Password.getText(), p.getUserPassword())){
                 Stage stage = (Stage) BT_Login.getScene().getWindow();
+                LoggedInUser.getInstance();
+                LoggedInUser.setInfo(p.getUserId(), p.getUsername(), p.getUserType());
                 manager.gotoMainScreen(stage);
                 break;
             }     
