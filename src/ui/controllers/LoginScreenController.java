@@ -75,7 +75,11 @@ public class LoginScreenController implements Initializable {
     }
 
     @FXML
-    private void HandleBT_NewUserClicked(MouseEvent event) {
+    private void HandleBT_NewUserClicked(MouseEvent event) throws Exception {
+        LoggedInUser.getInstance();
+        LoggedInUser.setLastPage("Login");
+        Stage stage = (Stage) BT_Login.getScene().getWindow();
+        manager.gotoUserScreen(stage);
     }
 
     @FXML

@@ -15,6 +15,7 @@ public class LoggedInUser {
    private static String UserName;
    private static int UserID;
    private static String UserType;
+   private static String LastPage;
    
    private LoggedInUser() {
       // Exists only to defeat instantiation.
@@ -37,6 +38,14 @@ public class LoggedInUser {
        UserID = userID;
        UserName = userName;
        UserType = userType;
+   }
+   
+   public static void setLastPage(String CurrentPage){
+       LastPage = CurrentPage;
+   }
+   
+   public static String getLastPage(){
+       return LastPage;
    }
    
    public static String getUserName(){

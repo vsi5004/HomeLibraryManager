@@ -33,8 +33,6 @@ public class MainScreenController implements Initializable {
     @FXML
     private TextField TF_MediaTitle;
     @FXML
-    private Button BT_ManageUsers;
-    @FXML
     private Button BT_AddUser;
     @FXML
     private Button BT_EditUserInfo;
@@ -60,24 +58,24 @@ public class MainScreenController implements Initializable {
         manager.gotoMediaScreen(stage);
     }
 
-    @FXML
-    private void HandleBT_ManageUsersClicked(MouseEvent event) {
-    }
 
     @FXML
     private void HandleBT_AddUserClicked(MouseEvent event) throws Exception {
+        LoggedInUser.setLastPage("Main");
         Stage stage = (Stage) BT_AddUser.getScene().getWindow();
         manager.gotoUserScreen(stage);
     }
 
     @FXML
     private void HandleBT_EditUserInfoClicked(MouseEvent event) throws Exception {
+        LoggedInUser.setLastPage("Main");
         Stage stage = (Stage) BT_EditUserInfo.getScene().getWindow();
         manager.gotoUserScreen(stage);
     }
 
     @FXML
     private void HandleBT_UserLogOut(MouseEvent event) throws Exception {
+        LoggedInUser.setLastPage("Main");
         Stage stage = (Stage) BT_UserLogOut.getScene().getWindow();
         manager.gotoLoginScreen(stage);
     }
