@@ -53,27 +53,47 @@ public class UserScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        LB_ValidationMessage.setText("");
+        CB_UserType.setVisible(true);
+        if (LoggedInUser.getEditCurrent()) {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
+            AppUserJpaController jpaUser = new AppUserJpaController(emf);
+            AppUser currentUser = jpaUser.findAppUser(LoggedInUser.getUserID());
+            TF_UserName.setText(currentUser.getUsername());
+            TF_UserPassword.setText(currentUser.getUserPassword());
+            TA_SecurityQuestion.setText(currentUser.getSecurityQuestion());
+            TF_SecurityQuestionAnswer.setText(currentUser.getSecurityAnswer());
+            CB_UserType.setVisible(false);
+        }
     }
 
     @FXML
     private void HandleBT_SaveUserClicked(MouseEvent event) throws Exception {
 
-        if( ValidateFields() )
-        {
+        if (ValidateFields()) {
             LB_ValidationMessage.setText("Storing in database, please wait.");
-            
-            AppUser user = new AppUser();
-            user.setUsername(TF_UserName.getText());
-            user.setUserPassword(TF_UserPassword.getText());
-            user.setSecurityQuestion(TA_SecurityQuestion.getText());
-            user.setSecurityAnswer(TF_SecurityQuestionAnswer.getText());
-            user.setUserType(CB_UserType.getValue().toString().toUpperCase());
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
             AppUserJpaController jpaUser = new AppUserJpaController(emf);
-            jpaUser.create(user);
 
+            if (LoggedInUser.getEditCurrent()) {
+                AppUser user = jpaUser.findAppUser(LoggedInUser.getUserID());
+                user.setUsername(TF_UserName.getText());
+                user.setUserPassword(TF_UserPassword.getText());
+                user.setSecurityQuestion(TA_SecurityQuestion.getText());
+                user.setSecurityAnswer(TF_SecurityQuestionAnswer.getText());
+                //user.setUserType(CB_UserType.getValue().toString().toUpperCase());
+                jpaUser.edit(user);
+
+            } else {
+                AppUser user = new AppUser();
+                user.setUsername(TF_UserName.getText());
+                user.setUserPassword(TF_UserPassword.getText());
+                user.setSecurityQuestion(TA_SecurityQuestion.getText());
+                user.setSecurityAnswer(TF_SecurityQuestionAnswer.getText());
+                user.setUserType(CB_UserType.getValue().toString().toUpperCase());
+                jpaUser.create(user);
+            }
             gotoLastPage();
         }
     }
@@ -91,12 +111,13 @@ public class UserScreenController implements Initializable {
             manager.gotoLoginScreen(stage);
         } else {
             LoggedInUser.setLastPage("User");
+            LoggedInUser.setEditCurrent(false);
             manager.gotoMainScreen(stage);
         }
     }
 
     private boolean ValidateFields() {
-        if(TF_UserName.getText().isEmpty() || TF_UserPassword.getText().isEmpty()|| TA_SecurityQuestion.getText().isEmpty() || TF_SecurityQuestionAnswer.getText().isEmpty() || CB_UserType.getValue()==null){
+        if (TF_UserName.getText().isEmpty() || TF_UserPassword.getText().isEmpty() || TA_SecurityQuestion.getText().isEmpty() || TF_SecurityQuestionAnswer.getText().isEmpty() || ( CB_UserType.isVisible() && CB_UserType.getValue() == null)) {
             LB_ValidationMessage.setText("Please fill in all fields!");
             return false;
         }

@@ -16,6 +16,7 @@ public class LoggedInUser {
    private static int UserID;
    private static String UserType;
    private static String LastPage;
+   private static boolean EditCurrent = false;
    
    private LoggedInUser() {
       // Exists only to defeat instantiation.
@@ -48,7 +49,19 @@ public class LoggedInUser {
        return LastPage;
    }
    
+   public static void setEditCurrent(boolean edit){
+       EditCurrent = edit;
+   }
+   
+   public static boolean getEditCurrent(){
+       return EditCurrent;
+   }
+   
    public static String getUserName(){
        return UserName;
+   }
+   
+   public static int getUserID(){
+       return UserID;
    }
 }
