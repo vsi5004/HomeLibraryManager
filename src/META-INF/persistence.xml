@@ -3,6 +3,7 @@
   <persistence-unit name="HomeLibraryManagerPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>dbClasses.AppUser</class>
+    <class>dbClasses.Media</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ivaniakimenko.ddns.net:3306/HomeLibraryManager?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="HLMuser"/>
