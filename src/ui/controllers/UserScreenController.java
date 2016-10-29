@@ -10,6 +10,8 @@ import dbClasses.AppUserJpaController;
 import homelibrarymanager.HomeLibraryManager;
 import homelibrarymanager.LoggedInUser;
 import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -117,10 +119,27 @@ public class UserScreenController implements Initializable {
     }
 
     private boolean ValidateFields() {
-        if (TF_UserName.getText().isEmpty() || TF_UserPassword.getText().isEmpty() || TA_SecurityQuestion.getText().isEmpty() || TF_SecurityQuestionAnswer.getText().isEmpty() || ( CB_UserType.isVisible() && CB_UserType.getValue() == null)) {
+        if (TF_UserName.getText().isEmpty() || TF_UserPassword.getText().isEmpty() || TA_SecurityQuestion.getText().isEmpty() || TF_SecurityQuestionAnswer.getText().isEmpty() || (CB_UserType.isVisible() && CB_UserType.getValue() == null)) {
             LB_ValidationMessage.setText("Please fill in all fields!");
             return false;
         }
+        if (UsernameExists(TF_UserName.getText()) && !LoggedInUser.getEditCurrent()) {
+            LB_ValidationMessage.setText("Username already taken! Please pick another one.");
+            return false;
+        }
         return true;
+    }
+
+    private boolean UsernameExists(String Username) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
+        AppUserJpaController jpaUser = new AppUserJpaController(emf);
+        List<AppUser> users = jpaUser.findAppUserEntities();
+
+        for (AppUser p : users) {
+            if (Objects.equals(Username, p.getUsername())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
