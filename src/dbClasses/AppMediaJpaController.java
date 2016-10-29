@@ -19,9 +19,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Ivan
  */
-public class MediaJpaController implements Serializable {
+public class AppMediaJpaController implements Serializable {
 
-    public MediaJpaController(EntityManagerFactory emf) {
+    public AppMediaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -30,12 +30,12 @@ public class MediaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Media media) {
+    public void create(AppMedia appMedia) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(media);
+            em.persist(appMedia);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -44,19 +44,19 @@ public class MediaJpaController implements Serializable {
         }
     }
 
-    public void edit(Media media) throws NonexistentEntityException, Exception {
+    public void edit(AppMedia appMedia) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            media = em.merge(media);
+            appMedia = em.merge(appMedia);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = media.getMediaId();
-                if (findMedia(id) == null) {
-                    throw new NonexistentEntityException("The media with id " + id + " no longer exists.");
+                Integer id = appMedia.getMediaId();
+                if (findAppMedia(id) == null) {
+                    throw new NonexistentEntityException("The appMedia with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -72,14 +72,14 @@ public class MediaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Media media;
+            AppMedia appMedia;
             try {
-                media = em.getReference(Media.class, id);
-                media.getMediaId();
+                appMedia = em.getReference(AppMedia.class, id);
+                appMedia.getMediaId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The media with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The appMedia with id " + id + " no longer exists.", enfe);
             }
-            em.remove(media);
+            em.remove(appMedia);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -88,19 +88,19 @@ public class MediaJpaController implements Serializable {
         }
     }
 
-    public List<Media> findMediaEntities() {
-        return findMediaEntities(true, -1, -1);
+    public List<AppMedia> findAppMediaEntities() {
+        return findAppMediaEntities(true, -1, -1);
     }
 
-    public List<Media> findMediaEntities(int maxResults, int firstResult) {
-        return findMediaEntities(false, maxResults, firstResult);
+    public List<AppMedia> findAppMediaEntities(int maxResults, int firstResult) {
+        return findAppMediaEntities(false, maxResults, firstResult);
     }
 
-    private List<Media> findMediaEntities(boolean all, int maxResults, int firstResult) {
+    private List<AppMedia> findAppMediaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Media.class));
+            cq.select(cq.from(AppMedia.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -112,20 +112,20 @@ public class MediaJpaController implements Serializable {
         }
     }
 
-    public Media findMedia(Integer id) {
+    public AppMedia findAppMedia(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Media.class, id);
+            return em.find(AppMedia.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getMediaCount() {
+    public int getAppMediaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Media> rt = cq.from(Media.class);
+            Root<AppMedia> rt = cq.from(AppMedia.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

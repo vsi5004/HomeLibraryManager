@@ -21,30 +21,30 @@ import javax.persistence.Table;
  * @author Ivan
  */
 @Entity
-@Table(name = "media")
+@Table(name = "app_media")
 @NamedQueries({
-    @NamedQuery(name = "Media.findAll", query = "SELECT m FROM Media m")
-    , @NamedQuery(name = "Media.findByMediaId", query = "SELECT m FROM Media m WHERE m.mediaId = :mediaId")
-    , @NamedQuery(name = "Media.findByTitle", query = "SELECT m FROM Media m WHERE m.title = :title")
-    , @NamedQuery(name = "Media.findByType", query = "SELECT m FROM Media m WHERE m.type = :type")
-    , @NamedQuery(name = "Media.findByFormat", query = "SELECT m FROM Media m WHERE m.format = :format")
-    , @NamedQuery(name = "Media.findByYear", query = "SELECT m FROM Media m WHERE m.year = :year")
-    , @NamedQuery(name = "Media.findByGenre", query = "SELECT m FROM Media m WHERE m.genre = :genre")
-    , @NamedQuery(name = "Media.findByLocation", query = "SELECT m FROM Media m WHERE m.location = :location")
-    , @NamedQuery(name = "Media.findByRating", query = "SELECT m FROM Media m WHERE m.rating = :rating")
-    , @NamedQuery(name = "Media.findByLoanedTo", query = "SELECT m FROM Media m WHERE m.loanedTo = :loanedTo")
-    , @NamedQuery(name = "Media.findByLoanedDate", query = "SELECT m FROM Media m WHERE m.loanedDate = :loanedDate")
-    , @NamedQuery(name = "Media.findByAuthor", query = "SELECT m FROM Media m WHERE m.author = :author")
-    , @NamedQuery(name = "Media.findByVolume", query = "SELECT m FROM Media m WHERE m.volume = :volume")
-    , @NamedQuery(name = "Media.findByPublisher", query = "SELECT m FROM Media m WHERE m.publisher = :publisher")
-    , @NamedQuery(name = "Media.findByVersion", query = "SELECT m FROM Media m WHERE m.version = :version")
-    , @NamedQuery(name = "Media.findByEdition", query = "SELECT m FROM Media m WHERE m.edition = :edition")
-    , @NamedQuery(name = "Media.findByDirector", query = "SELECT m FROM Media m WHERE m.director = :director")
-    , @NamedQuery(name = "Media.findByDuration", query = "SELECT m FROM Media m WHERE m.duration = :duration")
-    , @NamedQuery(name = "Media.findByArtist", query = "SELECT m FROM Media m WHERE m.artist = :artist")
-    , @NamedQuery(name = "Media.findByAlbum", query = "SELECT m FROM Media m WHERE m.album = :album")
-    , @NamedQuery(name = "Media.findByTrackNumber", query = "SELECT m FROM Media m WHERE m.trackNumber = :trackNumber")})
-public class Media implements Serializable {
+    @NamedQuery(name = "AppMedia.findAll", query = "SELECT a FROM AppMedia a")
+    , @NamedQuery(name = "AppMedia.findByMediaId", query = "SELECT a FROM AppMedia a WHERE a.mediaId = :mediaId")
+    , @NamedQuery(name = "AppMedia.findByTitle", query = "SELECT a FROM AppMedia a WHERE a.title = :title")
+    , @NamedQuery(name = "AppMedia.findByType", query = "SELECT a FROM AppMedia a WHERE a.type = :type")
+    , @NamedQuery(name = "AppMedia.findByFormat", query = "SELECT a FROM AppMedia a WHERE a.format = :format")
+    , @NamedQuery(name = "AppMedia.findByYear", query = "SELECT a FROM AppMedia a WHERE a.year = :year")
+    , @NamedQuery(name = "AppMedia.findByGenre", query = "SELECT a FROM AppMedia a WHERE a.genre = :genre")
+    , @NamedQuery(name = "AppMedia.findByLocation", query = "SELECT a FROM AppMedia a WHERE a.location = :location")
+    , @NamedQuery(name = "AppMedia.findByRating", query = "SELECT a FROM AppMedia a WHERE a.rating = :rating")
+    , @NamedQuery(name = "AppMedia.findByLoanedTo", query = "SELECT a FROM AppMedia a WHERE a.loanedTo = :loanedTo")
+    , @NamedQuery(name = "AppMedia.findByLoanedDate", query = "SELECT a FROM AppMedia a WHERE a.loanedDate = :loanedDate")
+    , @NamedQuery(name = "AppMedia.findByAuthor", query = "SELECT a FROM AppMedia a WHERE a.author = :author")
+    , @NamedQuery(name = "AppMedia.findByVolume", query = "SELECT a FROM AppMedia a WHERE a.volume = :volume")
+    , @NamedQuery(name = "AppMedia.findByPublisher", query = "SELECT a FROM AppMedia a WHERE a.publisher = :publisher")
+    , @NamedQuery(name = "AppMedia.findByVersion", query = "SELECT a FROM AppMedia a WHERE a.version = :version")
+    , @NamedQuery(name = "AppMedia.findByEdition", query = "SELECT a FROM AppMedia a WHERE a.edition = :edition")
+    , @NamedQuery(name = "AppMedia.findByDirector", query = "SELECT a FROM AppMedia a WHERE a.director = :director")
+    , @NamedQuery(name = "AppMedia.findByDuration", query = "SELECT a FROM AppMedia a WHERE a.duration = :duration")
+    , @NamedQuery(name = "AppMedia.findByArtist", query = "SELECT a FROM AppMedia a WHERE a.artist = :artist")
+    , @NamedQuery(name = "AppMedia.findByAlbum", query = "SELECT a FROM AppMedia a WHERE a.album = :album")
+    , @NamedQuery(name = "AppMedia.findByTrackNumber", query = "SELECT a FROM AppMedia a WHERE a.trackNumber = :trackNumber")})
+public class AppMedia implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -93,14 +93,14 @@ public class Media implements Serializable {
     @Column(name = "track_number")
     private Integer trackNumber;
 
-    public Media() {
+    public AppMedia() {
     }
 
-    public Media(Integer mediaId) {
+    public AppMedia(Integer mediaId) {
         this.mediaId = mediaId;
     }
 
-    public Media(Integer mediaId, String title, String type) {
+    public AppMedia(Integer mediaId, String title, String type) {
         this.mediaId = mediaId;
         this.title = title;
         this.type = type;
@@ -276,10 +276,10 @@ public class Media implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Media)) {
+        if (!(object instanceof AppMedia)) {
             return false;
         }
-        Media other = (Media) object;
+        AppMedia other = (AppMedia) object;
         if ((this.mediaId == null && other.mediaId != null) || (this.mediaId != null && !this.mediaId.equals(other.mediaId))) {
             return false;
         }
@@ -288,7 +288,7 @@ public class Media implements Serializable {
 
     @Override
     public String toString() {
-        return "dbClasses.Media[ mediaId=" + mediaId + " ]";
+        return "dbClasses.AppMedia[ mediaId=" + mediaId + " ]";
     }
     
 }
