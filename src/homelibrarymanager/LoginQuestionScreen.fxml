@@ -21,7 +21,7 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="What is your security question?" wrapText="true">
+                  <Label fx:id="LB_SecurityQuestion" text="What is your security question?" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
