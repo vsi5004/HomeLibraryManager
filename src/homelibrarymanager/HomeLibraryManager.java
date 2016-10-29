@@ -32,6 +32,7 @@ public class HomeLibraryManager extends Application {
     public void gotoMainScreen(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene scene = new Scene(root);
+        stage.setTitle("Home Library Manager");
         stage.setScene(scene);
         stage.show();
     }
@@ -39,6 +40,7 @@ public class HomeLibraryManager extends Application {
     public void gotoLoginScreen(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
+        stage.setTitle("Login to Home Library Manager");
         stage.setScene(scene);
         stage.show();
     }
@@ -46,6 +48,7 @@ public class HomeLibraryManager extends Application {
     public void gotoUserScreen(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("UserScreen.fxml"));
         Scene scene = new Scene(root);
+        stage.setTitle("Home Library Manager User");
         stage.setScene(scene);
         stage.show();
     }
@@ -53,6 +56,7 @@ public class HomeLibraryManager extends Application {
     public void gotoMediaScreen(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MediaScreen.fxml"));
         Scene scene = new Scene(root);
+        stage.setTitle("Home Library Manager Media");
         stage.setScene(scene);
         stage.show();
     }

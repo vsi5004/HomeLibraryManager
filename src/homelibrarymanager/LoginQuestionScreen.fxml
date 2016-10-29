@@ -16,34 +16,42 @@
             <Region HBox.hgrow="ALWAYS" />
             <VBox alignment="CENTER" prefHeight="385.0" prefWidth="510.0">
                <children>
-                  <ImageView fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/HLM_Login.png" />
-                     </image>
+                  <Label text="Please answer the following security question:">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
-                  </ImageView>
-                  <TextField fx:id="TF_Username" text="Username">
+                  </Label>
+                  <Label text="What is your security question?" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="TF_SecurityAnswer" maxWidth="-Infinity" prefWidth="220.0" promptText="Answer">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField fx:id="TF_Password" text="Password">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <Label fx:id="LB_LoginError" text="" textFill="RED">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Your Password: " />
+                        <Label fx:id="LB_Password" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="LB_QuestionError" text="" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
                   </Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <Button fx:id="BT_Login" mnemonicParsing="false" onMouseClicked="#HandleBT_loginClicked" text="Log In" />
-                        <Button fx:id="BT_NewUser" mnemonicParsing="false" onMouseClicked="#HandleBT_NewUserClicked" text="New User" />
-                        <Button fx:id="BT_ForgotPassword" mnemonicParsing="false" onMouseClicked="#HandleBT_ForgotPasswordClicked" text="Forgot Password" />
+                        <Button fx:id="BT_GetPassword" mnemonicParsing="false" onMouseClicked="#HandleBT_GetPasswordClicked" text="Get Password" />
+                        <Button fx:id="BT_BackToLogin" mnemonicParsing="false" onMouseClicked="#HandleBT_BackToLoginClicked" text="Back" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
