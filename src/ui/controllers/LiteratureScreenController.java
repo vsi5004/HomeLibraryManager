@@ -86,10 +86,20 @@ public class LiteratureScreenController implements Initializable {
 
             if (editedMedia.getMediaId() != null) {
                 AppMedia media = jpaMedia.findAppMedia(editedMedia.getMediaId());
-                //user.setUsername(TF_UserName.getText());
-                //user.setUserPassword(TF_UserPassword.getText());
-                //user.setSecurityQuestion(TA_SecurityQuestion.getText());
-                //user.setSecurityAnswer(TF_SecurityQuestionAnswer.getText());
+                media.setType(MediaType.LITERATURE.getValue());
+                media.setFormat(CB_Format.getValue().toString());
+                media.setTitle(TF_Title.getText());
+                media.setAuthor(TF_Author.getText());
+                media.setVolume(TF_Volume.getText());
+                media.setPublisher(TF_Publisher.getText());
+                media.setVersion(TF_Version.getText());
+                media.setEdition(TF_Edition.getText());
+                media.setGenre(TF_Genre.getText());
+                media.setLocation(TF_Location.getText());
+                media.setRating(Integer.parseInt(TF_Rating.getText()));
+                media.setLoanedTo(TF_LoanedTo.getText());
+                media.setLoanedDate(TF_LoanedDate.getText());
+                
                 jpaMedia.edit(media);
 
             } else {
@@ -105,8 +115,8 @@ public class LiteratureScreenController implements Initializable {
                 media.setGenre(TF_Genre.getText());
                 media.setLocation(TF_Location.getText());
                 media.setRating(Integer.parseInt(TF_Rating.getText()));
-                
-                
+                media.setLoanedTo(TF_LoanedTo.getText());
+                media.setLoanedDate(TF_LoanedDate.getText());
                 
                 jpaMedia.create(media);
             }
@@ -133,6 +143,11 @@ public class LiteratureScreenController implements Initializable {
         }
         if (MediaExists(TF_Title.getText(), TF_Author.getText()) && !LoggedInUser.getEditCurrent()) {
             LB_ValidationMessage.setText("Media item already exists!");
+            return false;
+        }
+        if(Integer.valueOf(TF_Rating.getText()) < 1 || Integer.valueOf(TF_Rating.getText()) > 5){
+            LB_ValidationMessage.setText("Rating must be 1-5!");
+            TF_Rating.setText("");
             return false;
         }
         return true;
