@@ -32,7 +32,8 @@ import javax.persistence.Persistence;
  *
  * @author Ivan
  */
-public class LiteratureScreenController implements Initializable {
+public class LiteratureScreenController implements Initializable
+{
 
     HomeLibraryManager manager = new HomeLibraryManager();
     @FXML
@@ -65,26 +66,30 @@ public class LiteratureScreenController implements Initializable {
     private TextField TF_Edition;
     @FXML
     private Label LB_ValidationMessage;
-    
+
     private AppMedia editedMedia = new AppMedia();
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
     @FXML
-    private void HandleBT_SaveMediaClicked(MouseEvent event) throws Exception {
-        if (ValidateFields()) {
+    private void HandleBT_SaveMediaClicked(MouseEvent event) throws Exception
+    {
+        if (ValidateFields())
+        {
             LB_ValidationMessage.setText("Storing in database, please wait.");
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
             AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
 
-            if (editedMedia.getMediaId() != null) {
+            if (editedMedia.getMediaId() != null)
+            {
                 AppMedia media = jpaMedia.findAppMedia(editedMedia.getMediaId());
                 media.setType(MediaType.LITERATURE.getValue());
                 media.setFormat(CB_Format.getValue().toString());
@@ -99,10 +104,11 @@ public class LiteratureScreenController implements Initializable {
                 media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
-                
+
                 jpaMedia.edit(media);
 
-            } else {
+            } else
+            {
                 AppMedia media = new AppMedia();
                 media.setType(MediaType.LITERATURE.getValue());
                 media.setFormat(CB_Format.getValue().toString());
@@ -117,7 +123,7 @@ public class LiteratureScreenController implements Initializable {
                 media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
-                
+
                 jpaMedia.create(media);
             }
             gotoLastPage();
@@ -125,27 +131,33 @@ public class LiteratureScreenController implements Initializable {
     }
 
     @FXML
-    private void HandleBT_CancelMediaClicked(MouseEvent event) throws Exception {
+    private void HandleBT_CancelMediaClicked(MouseEvent event) throws Exception
+    {
         gotoLastPage();
     }
 
-    private void gotoLastPage() throws Exception {
+    private void gotoLastPage() throws Exception
+    {
         Stage stage = (Stage) BT_CancelMedia.getScene().getWindow();
         LB_ValidationMessage.setText("");
         LoggedInUser.setLastPage("Literature");
         manager.gotoMainScreen(stage);
     }
 
-    private boolean ValidateFields() {
-        if (TF_Title.getText().isEmpty() || TF_Author.getText().isEmpty() || CB_Format.getValue() == null) {
+    private boolean ValidateFields()
+    {
+        if (TF_Title.getText().isEmpty() || TF_Author.getText().isEmpty() || CB_Format.getValue() == null)
+        {
             LB_ValidationMessage.setText("Please fill in Title, Author, and Format fields!");
             return false;
         }
-        if (MediaExists(TF_Title.getText(), TF_Author.getText()) && !LoggedInUser.getEditCurrent()) {
+        if (MediaExists(TF_Title.getText(), TF_Author.getText()) && !LoggedInUser.getEditCurrent())
+        {
             LB_ValidationMessage.setText("Media item already exists!");
             return false;
         }
-        if(Integer.valueOf(TF_Rating.getText()) < 1 || Integer.valueOf(TF_Rating.getText()) > 5){
+        if (Integer.valueOf(TF_Rating.getText()) < 1 || Integer.valueOf(TF_Rating.getText()) > 5)
+        {
             LB_ValidationMessage.setText("Rating must be 1-5!");
             TF_Rating.setText("");
             return false;
@@ -153,20 +165,24 @@ public class LiteratureScreenController implements Initializable {
         return true;
     }
 
-    private boolean MediaExists(String Title, String Author) {
+    private boolean MediaExists(String Title, String Author)
+    {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
         AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
         List<AppMedia> media = jpaMedia.findAppMediaEntities();
 
-        for (AppMedia m : media) {
-            if (Objects.equals(Title, m.getTitle()) && Objects.equals(Author, m.getAuthor())) {
+        for (AppMedia m : media)
+        {
+            if (Objects.equals(Title, m.getTitle()) && Objects.equals(Author, m.getAuthor()))
+            {
                 return true;
             }
         }
         return false;
     }
-    
-    public void initEditMedia(AppMedia media){
+
+    public void initEditMedia(AppMedia media)
+    {
         editedMedia = media;
     }
 }
