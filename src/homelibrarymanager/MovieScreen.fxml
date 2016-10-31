@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="761.0" prefWidth="1174.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MovieScreenController">
     <children>
@@ -82,6 +83,11 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="LB_ValidationMessage" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                   <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
                      <children>
                         <Button fx:id="BT_SaveMedia" mnemonicParsing="false" onMouseClicked="#HandleBT_SaveMediaClicked" text="Save" />
