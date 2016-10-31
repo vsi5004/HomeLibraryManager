@@ -5,9 +5,11 @@
  */
 package ui.controllers;
 
+import Enums.MediaType;
 import homelibrarymanager.HomeLibraryManager;
 import homelibrarymanager.LoggedInUser;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,12 +28,11 @@ import javafx.stage.Stage;
  * @author Ivan
  */
 public class MainScreenController implements Initializable {
-    
+
+    @FXML
     private ComboBox<String> CB_MediaType;
     @FXML
     private Button BT_AddMedia;
-    @FXML
-    private TextField TF_MediaTitle;
     @FXML
     private Button BT_AddUser;
     @FXML
@@ -44,20 +45,31 @@ public class MainScreenController implements Initializable {
     private Label LB_UserGreeting;
     @FXML
     private Button BT_UserLogOut;
+    @FXML
+    private Label LB_AddMediaError;
     
     HomeLibraryManager manager = new HomeLibraryManager();
- 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LB_UserGreeting.setText("Hello, " + LoggedInUser.getUserName());
-    }    
+    }
 
     @FXML
     private void HandleBT_AddMediaClicked(MouseEvent event) throws Exception {
-        Stage stage = (Stage) BT_AddMedia.getScene().getWindow();
-        manager.gotoMediaScreen(stage);
-    }
+        if (CB_MediaType.getValue() != null) {
+            Stage stage = (Stage) BT_AddMedia.getScene().getWindow();
+            for (MediaType type : MediaType.values()) {
+                if (Objects.equals(CB_MediaType.getValue(), type.getValue())) {
+                    manager.gotoMediaScreen(stage, type);
+                }
+            }
+        }
+        else{
+            LB_AddMediaError.setText("Select a media type!");
+        }
 
+    }
 
     @FXML
     private void HandleBT_AddUserClicked(MouseEvent event) throws Exception {
@@ -80,5 +92,5 @@ public class MainScreenController implements Initializable {
         Stage stage = (Stage) BT_UserLogOut.getScene().getWindow();
         manager.gotoLoginScreen(stage);
     }
-    
+
 }

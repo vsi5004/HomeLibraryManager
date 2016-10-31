@@ -5,6 +5,7 @@
  */
 package homelibrarymanager;
 
+import Enums.MediaType;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -54,10 +55,23 @@ public class HomeLibraryManager extends Application {
         setupScene(stage, "Home Library Manager User", loader);
     }
     
-    public void gotoMediaScreen(Stage stage) throws Exception{
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("MediaScreen.fxml"));
-        //MediaScreenController controller = (MediaScreenController) loader.getController();
-        //setupScene(stage, "Home Library Manager Media", loader);
+    public void gotoMediaScreen(Stage stage, MediaType type) throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        
+        if(type == MediaType.LITERATURE){
+            loader = new FXMLLoader(getClass().getResource("LiteratureScreen.fxml"));
+            LiteratureScreenController controller = (LiteratureScreenController) loader.getController();
+        }
+        else if(type == MediaType.MOVIE){
+            loader = new FXMLLoader(getClass().getResource("MovieScreen.fxml"));
+            MovieScreenController controller = (MovieScreenController) loader.getController();
+        }
+        else if(type == MediaType.MUSIC){
+            loader = new FXMLLoader(getClass().getResource("LiteratureScreen.fxml"));
+            LiteratureScreenController controller = (LiteratureScreenController) loader.getController();
+        }
+
+        setupScene(stage, "Home Library Manager Media", loader);
     }
     
     private void setupScene(Stage stage, String Title, FXMLLoader loader) throws IOException{
