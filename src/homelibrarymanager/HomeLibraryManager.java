@@ -13,7 +13,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ui.controllers.LoginScreenController;
 import ui.controllers.MainScreenController;
-import ui.controllers.MediaScreenController;
+import ui.controllers.MovieScreenController;
+import ui.controllers.LiteratureScreenController;
+import ui.controllers.MusicScreenController;
 import ui.controllers.UserScreenController;
 
 /**
@@ -53,9 +55,9 @@ public class HomeLibraryManager extends Application {
     }
     
     public void gotoMediaScreen(Stage stage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MediaScreen.fxml"));
-        MediaScreenController controller = (MediaScreenController) loader.getController();
-        setupScene(stage, "Home Library Manager Media", loader);
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("MediaScreen.fxml"));
+        //MediaScreenController controller = (MediaScreenController) loader.getController();
+        //setupScene(stage, "Home Library Manager Media", loader);
     }
     
     private void setupScene(Stage stage, String Title, FXMLLoader loader) throws IOException{

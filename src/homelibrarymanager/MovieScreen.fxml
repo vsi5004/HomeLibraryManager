@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane id="AnchorPane" prefHeight="761.0" prefWidth="1174.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MovieScreenController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="1153.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="71.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/HLM_Logo.png" />
+                     </image>
+                  </ImageView>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </top>
+         <center>
+             <VBox alignment="TOP_CENTER" prefHeight="180.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Movie Information" />
+               </children>
+             </VBox>
+         </center>
+        </BorderPane>
+    </children>
+
+</AnchorPane>
