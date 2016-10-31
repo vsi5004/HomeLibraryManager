@@ -61,6 +61,7 @@ public class MainScreenController implements Initializable {
             Stage stage = (Stage) BT_AddMedia.getScene().getWindow();
             for (MediaType type : MediaType.values()) {
                 if (Objects.equals(CB_MediaType.getValue(), type.getValue())) {
+                    LoggedInUser.setLastPage("Main");
                     manager.gotoMediaScreen(stage, type);
                 }
             }

@@ -25,7 +25,10 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label fx:id="LB_UserGreeting" alignment="CENTER" contentDisplay="CENTER" text="Hello User!" />
-                        <Button fx:id="BT_UserLogOut" mnemonicParsing="false" onMouseClicked="#HandleBT_UserLogOut" prefHeight="25.0" prefWidth="78.0" text="Log out" />
+                        <Button fx:id="BT_UserLogOut" mnemonicParsing="false" onMouseClicked="#HandleBT_UserLogOut" prefHeight="25.0" prefWidth="78.0" text="Log out">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin></Button>
                      </children>
                   </VBox>
                </children>

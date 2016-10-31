@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
 
 <AnchorPane id="AnchorPane" prefHeight="761.0" prefWidth="1174.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MusicScreenController">
     <children>
@@ -27,6 +29,73 @@
              <VBox alignment="TOP_CENTER" prefHeight="180.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Label text="Music Information" />
+                  <ComboBox fx:id="CB_Format" maxWidth="-Infinity" prefWidth="220.0" promptText="Media Format">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="CD" />
+                            <String fx:value="Tape" />
+                            <String fx:value="Record" />
+                            <String fx:value="Other" />
+                        </FXCollections>
+                    </items>
+                  </ComboBox>
+                  <TextField fx:id="TF_Title" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Title" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_Artist" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Artist" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_Album" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Album" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_TrackNumber" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Track Number" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_Genre" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Genre" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_Location" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Location" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_Rating" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Rating" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_LoanedTo" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Loaned To" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TF_LoanedDate" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Date Loaned" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="BT_SaveMedia" mnemonicParsing="false" onMouseClicked="#HandleBT_SaveMediaClicked" text="Save" />
+                        <Button fx:id="BT_CancelMedia" mnemonicParsing="false" onMouseClicked="#HandleBT_CancelMediaClicked" text="Cancel" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
              </VBox>
          </center>
