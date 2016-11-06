@@ -5,6 +5,7 @@
  */
 package dbClasses;
 
+import Enums.MediaType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -92,6 +93,7 @@ public class AppMedia implements Serializable {
     private String album;
     @Column(name = "track_number")
     private Integer trackNumber;
+    
 
     public AppMedia() {
     }
@@ -290,5 +292,18 @@ public class AppMedia implements Serializable {
     public String toString() {
         return "dbClasses.AppMedia[ mediaId=" + mediaId + " ]";
     }
+    
+    public String getCreator(){
+    if(MediaType.LITERATURE.getValue().equals(this.type)){
+        return this.author;
+    }
+    if(MediaType.MOVIE.getValue().equals(this.type)){
+        return this.director;
+    }
+    if(MediaType.MUSIC.getValue().equals(this.type)){
+        return this.artist;
+    }
+    return null;
+}
     
 }
