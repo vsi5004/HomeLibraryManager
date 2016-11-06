@@ -26,13 +26,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * FXML Controller class
  *
  * @author Ivan
  */
-public class MovieScreenController implements Initializable {
+public class MovieScreenController implements Initializable
+{
 
     HomeLibraryManager manager = new HomeLibraryManager();
     @FXML
@@ -59,15 +61,17 @@ public class MovieScreenController implements Initializable {
     private TextField TF_Duration;
     @FXML
     private Label LB_ValidationMessage;
-    
+
     private AppMedia editedMedia = new AppMedia();
+
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
+    }
 
     @FXML
     private void HandleBT_SaveMediaClicked(MouseEvent event) throws Exception
@@ -116,19 +120,19 @@ public class MovieScreenController implements Initializable {
     }
 
     @FXML
-    private void HandleBT_CancelMediaClicked(MouseEvent event) throws Exception 
+    private void HandleBT_CancelMediaClicked(MouseEvent event) throws Exception
     {
         gotoLastPage();
     }
 
-    private void gotoLastPage() throws Exception 
+    private void gotoLastPage() throws Exception
     {
         Stage stage = (Stage) BT_CancelMedia.getScene().getWindow();
         LB_ValidationMessage.setText("");
         LoggedInUser.setLastPage("Movie");
         manager.gotoMainScreen(stage);
     }
-    
+
     private boolean ValidateFields()
     {
         if (TF_Title.getText().isEmpty() || TF_Title.getText().isEmpty() || CB_Format.getValue() == null)
@@ -141,7 +145,13 @@ public class MovieScreenController implements Initializable {
             LB_ValidationMessage.setText("Media item already exists!");
             return false;
         }
-        if (Integer.valueOf(TF_Rating.getText()) < 1 || Integer.valueOf(TF_Rating.getText()) > 5)
+        if (!StringUtils.isBlank(TF_Rating.getText()) && !StringUtils.isNumeric(TF_Rating.getText()))
+        {
+            LB_ValidationMessage.setText("Rating must a number from 1-5!");
+            TF_Rating.setText("");
+            return false;
+        }
+        if (!StringUtils.isBlank(TF_Rating.getText()) && (Integer.valueOf(TF_Rating.getText()) < 1 || Integer.valueOf(TF_Rating.getText()) > 5))
         {
             LB_ValidationMessage.setText("Rating must be 1-5!");
             TF_Rating.setText("");

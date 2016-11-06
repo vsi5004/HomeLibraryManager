@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * FXML Controller class
@@ -156,7 +157,13 @@ public class LiteratureScreenController implements Initializable
             LB_ValidationMessage.setText("Media item already exists!");
             return false;
         }
-        if (Integer.valueOf(TF_Rating.getText()) < 1 || Integer.valueOf(TF_Rating.getText()) > 5)
+        if (!StringUtils.isBlank(TF_Rating.getText()) && !StringUtils.isNumeric(TF_Rating.getText()))
+        {
+            LB_ValidationMessage.setText("Rating must a number from 1-5!");
+            TF_Rating.setText("");
+            return false;
+        }
+        if (!StringUtils.isBlank(TF_Rating.getText()) && (Integer.valueOf(TF_Rating.getText()) < 1 || Integer.valueOf(TF_Rating.getText()) > 5))
         {
             LB_ValidationMessage.setText("Rating must be 1-5!");
             TF_Rating.setText("");
