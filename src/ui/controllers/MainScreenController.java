@@ -5,7 +5,9 @@
  */
 package ui.controllers;
 
+import Enums.MediaFormat;
 import Enums.MediaType;
+import dbClasses.AppMedia;
 import homelibrarymanager.HomeLibraryManager;
 import homelibrarymanager.LoggedInUser;
 import java.net.URL;
@@ -19,6 +21,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -49,6 +54,11 @@ public class MainScreenController implements Initializable {
     private Label LB_AddMediaError;
     
     HomeLibraryManager manager = new HomeLibraryManager();
+    
+    @FXML
+    private Tab TB_Collections;
+    @FXML
+    private Tab TB_Users;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

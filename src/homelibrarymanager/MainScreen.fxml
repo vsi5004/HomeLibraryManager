@@ -37,17 +37,17 @@
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab text="Media">
+                <Tab fx:id="TB_Media" text="Media">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="641.0" prefWidth="915.0" />
+                    <fx:include fx:id="MediaTab" source="MediaTab.fxml"/>
                   </content>
                 </Tab>
-                <Tab text="Collections">
+                <Tab fx:id="TB_Collections" text="Collections">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                 </Tab>
-                <Tab text="Users">
+                <Tab fx:id="TB_Users" text="Users">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>

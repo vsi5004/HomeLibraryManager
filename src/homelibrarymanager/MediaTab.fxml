@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane id="MediaTab" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MediaTabController">
+    <children>
+        <TableView fx:id="TV_Media" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <columns>
+                <TableColumn fx:id="TC_Title" prefWidth="75.0" text="Title" />
+                <TableColumn fx:id="TC_Creator" prefWidth="75.0" text="Creator" />
+                <TableColumn fx:id="TC_Type" prefWidth="75.0" text="Type" />
+                <TableColumn fx:id="TC_Format" prefWidth="75.0" text="Format" />
+                <TableColumn fx:id="TC_Rating" prefWidth="75.0" text="Rating" />
+            </columns>
+        </TableView>
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+</AnchorPane>
