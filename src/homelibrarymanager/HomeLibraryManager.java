@@ -67,7 +67,7 @@ public class HomeLibraryManager extends Application {
             MovieScreenController controller = (MovieScreenController) loader.getController();
         }
         else if(type == MediaType.MUSIC){
-            loader = new FXMLLoader(getClass().getResource("LiteratureScreen.fxml"));
+            loader = new FXMLLoader(getClass().getResource("MusicScreen.fxml"));
             LiteratureScreenController controller = (LiteratureScreenController) loader.getController();
         }
 

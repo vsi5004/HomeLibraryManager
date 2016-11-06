@@ -102,9 +102,13 @@ public class LiteratureScreenController implements Initializable
                 media.setEdition(TF_Edition.getText());
                 media.setGenre(TF_Genre.getText());
                 media.setLocation(TF_Location.getText());
-                media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
+
+                if (!StringUtils.isBlank(TF_Rating.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
 
                 jpaMedia.edit(media);
 
@@ -121,9 +125,13 @@ public class LiteratureScreenController implements Initializable
                 media.setEdition(TF_Edition.getText());
                 media.setGenre(TF_Genre.getText());
                 media.setLocation(TF_Location.getText());
-                media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
+
+                if (!StringUtils.isBlank(TF_Rating.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
 
                 jpaMedia.create(media);
             }

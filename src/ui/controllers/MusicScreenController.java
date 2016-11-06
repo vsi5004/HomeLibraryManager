@@ -93,12 +93,19 @@ public class MusicScreenController implements Initializable
                 media.setTitle(TF_Title.getText());
                 media.setArtist(TF_Artist.getText());
                 media.setAlbum(TF_Album.getText());
-                media.setTrackNumber(Integer.parseInt(TF_TrackNumber.getText()));
                 media.setGenre(TF_Genre.getText());
                 media.setLocation(TF_Location.getText());
-                media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
+
+                if (!StringUtils.isBlank(TF_Rating.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
+                if (!StringUtils.isBlank(TF_TrackNumber.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
 
                 jpaMedia.edit(media);
 
@@ -110,12 +117,19 @@ public class MusicScreenController implements Initializable
                 media.setTitle(TF_Title.getText());
                 media.setArtist(TF_Artist.getText());
                 media.setAlbum(TF_Album.getText());
-                media.setTrackNumber(Integer.parseInt(TF_TrackNumber.getText()));
                 media.setGenre(TF_Genre.getText());
                 media.setLocation(TF_Location.getText());
-                media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
+
+                if (!StringUtils.isBlank(TF_Rating.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
+                if (!StringUtils.isBlank(TF_TrackNumber.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
 
                 jpaMedia.create(media);
             }
@@ -147,6 +161,12 @@ public class MusicScreenController implements Initializable
         if (MediaExists(TF_Title.getText(), TF_Artist.getText()) && !LoggedInUser.getEditCurrent())
         {
             LB_ValidationMessage.setText("Media item already exists!");
+            return false;
+        }
+        if (!StringUtils.isBlank(TF_TrackNumber.getText()) && !StringUtils.isNumeric(TF_TrackNumber.getText()))
+        {
+            LB_ValidationMessage.setText("Track Number must a number!");
+            TF_TrackNumber.setText("");
             return false;
         }
         if (!StringUtils.isBlank(TF_Rating.getText()) && !StringUtils.isNumeric(TF_Rating.getText()))

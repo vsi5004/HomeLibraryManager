@@ -93,9 +93,13 @@ public class MovieScreenController implements Initializable
                 media.setDuration(TF_Duration.getText());
                 media.setGenre(TF_Genre.getText());
                 media.setLocation(TF_Location.getText());
-                media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
+
+                if (!StringUtils.isBlank(TF_Rating.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
 
                 jpaMedia.edit(media);
 
@@ -109,9 +113,13 @@ public class MovieScreenController implements Initializable
                 media.setDuration(TF_Duration.getText());
                 media.setGenre(TF_Genre.getText());
                 media.setLocation(TF_Location.getText());
-                media.setRating(Integer.parseInt(TF_Rating.getText()));
                 media.setLoanedTo(TF_LoanedTo.getText());
                 media.setLoanedDate(TF_LoanedDate.getText());
+
+                if (!StringUtils.isBlank(TF_Rating.getText()))
+                {
+                    media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
 
                 jpaMedia.create(media);
             }
@@ -135,12 +143,12 @@ public class MovieScreenController implements Initializable
 
     private boolean ValidateFields()
     {
-        if (TF_Title.getText().isEmpty() || TF_Title.getText().isEmpty() || CB_Format.getValue() == null)
+        if (TF_Title.getText().isEmpty() || TF_Director.getText().isEmpty() || CB_Format.getValue() == null)
         {
             LB_ValidationMessage.setText("Please fill in Title, Director, and Format fields!");
             return false;
         }
-        if (MediaExists(TF_Title.getText(), TF_Title.getText()) && !LoggedInUser.getEditCurrent())
+        if (MediaExists(TF_Title.getText(), TF_Director.getText()) && !LoggedInUser.getEditCurrent())
         {
             LB_ValidationMessage.setText("Media item already exists!");
             return false;
