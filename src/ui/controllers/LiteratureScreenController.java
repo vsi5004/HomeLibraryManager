@@ -8,8 +8,6 @@ package ui.controllers;
 import Enums.MediaType;
 import dbClasses.AppMedia;
 import dbClasses.AppMediaJpaController;
-import dbClasses.AppUser;
-import dbClasses.AppUserJpaController;
 import homelibrarymanager.HomeLibraryManager;
 import homelibrarymanager.LoggedInUser;
 import java.net.URL;
@@ -51,6 +49,8 @@ public class LiteratureScreenController implements Initializable
     private TextField TF_LoanedTo;
     @FXML
     private TextField TF_LoanedDate;
+    @FXML
+    private TextField TF_Year;
     @FXML
     private Button BT_SaveMedia;
     @FXML
@@ -109,12 +109,17 @@ public class LiteratureScreenController implements Initializable
                 {
                     media.setRating(Integer.parseInt(TF_Rating.getText()));
                 }
+                if (!StringUtils.isBlank(TF_Year.getText()))
+                {
+                    media.setYear(Integer.parseInt(TF_Year.getText()));
+                }
 
                 jpaMedia.edit(media);
 
             } else
             {
                 AppMedia media = new AppMedia();
+                media.setUserId(LoggedInUser.getUserID());
                 media.setType(MediaType.LITERATURE.getValue());
                 media.setFormat(CB_Format.getValue().toString());
                 media.setTitle(TF_Title.getText());
@@ -131,6 +136,10 @@ public class LiteratureScreenController implements Initializable
                 if (!StringUtils.isBlank(TF_Rating.getText()))
                 {
                     media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
+                if (!StringUtils.isBlank(TF_Year.getText()))
+                {
+                    media.setYear(Integer.parseInt(TF_Year.getText()));
                 }
 
                 jpaMedia.create(media);

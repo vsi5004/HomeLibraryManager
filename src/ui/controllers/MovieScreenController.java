@@ -8,8 +8,6 @@ package ui.controllers;
 import Enums.MediaType;
 import dbClasses.AppMedia;
 import dbClasses.AppMediaJpaController;
-import dbClasses.AppUser;
-import dbClasses.AppUserJpaController;
 import homelibrarymanager.HomeLibraryManager;
 import homelibrarymanager.LoggedInUser;
 import java.net.URL;
@@ -47,6 +45,8 @@ public class MovieScreenController implements Initializable
     private TextField TF_Location;
     @FXML
     private TextField TF_Rating;
+    @FXML
+    private TextField TF_Year;
     @FXML
     private TextField TF_LoanedTo;
     @FXML
@@ -100,12 +100,17 @@ public class MovieScreenController implements Initializable
                 {
                     media.setRating(Integer.parseInt(TF_Rating.getText()));
                 }
+                if (!StringUtils.isBlank(TF_Year.getText()))
+                {
+                    media.setYear(Integer.parseInt(TF_Year.getText()));
+                }
 
                 jpaMedia.edit(media);
 
             } else
             {
                 AppMedia media = new AppMedia();
+                media.setUserId(LoggedInUser.getUserID());
                 media.setType(MediaType.MOVIE.getValue());
                 media.setFormat(CB_Format.getValue().toString());
                 media.setTitle(TF_Title.getText());
@@ -119,6 +124,10 @@ public class MovieScreenController implements Initializable
                 if (!StringUtils.isBlank(TF_Rating.getText()))
                 {
                     media.setRating(Integer.parseInt(TF_Rating.getText()));
+                }
+                if (!StringUtils.isBlank(TF_Year.getText()))
+                {
+                    media.setYear(Integer.parseInt(TF_Year.getText()));
                 }
 
                 jpaMedia.create(media);

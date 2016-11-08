@@ -5,7 +5,6 @@
  */
 package dbClasses;
 
-import Enums.MediaType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -23,7 +22,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "app_media")
-@NamedQueries({
+@NamedQueries(
+{
     @NamedQuery(name = "AppMedia.findAll", query = "SELECT a FROM AppMedia a")
     , @NamedQuery(name = "AppMedia.findByMediaId", query = "SELECT a FROM AppMedia a WHERE a.mediaId = :mediaId")
     , @NamedQuery(name = "AppMedia.findByTitle", query = "SELECT a FROM AppMedia a WHERE a.title = :title")
@@ -44,8 +44,11 @@ import javax.persistence.Table;
     , @NamedQuery(name = "AppMedia.findByDuration", query = "SELECT a FROM AppMedia a WHERE a.duration = :duration")
     , @NamedQuery(name = "AppMedia.findByArtist", query = "SELECT a FROM AppMedia a WHERE a.artist = :artist")
     , @NamedQuery(name = "AppMedia.findByAlbum", query = "SELECT a FROM AppMedia a WHERE a.album = :album")
-    , @NamedQuery(name = "AppMedia.findByTrackNumber", query = "SELECT a FROM AppMedia a WHERE a.trackNumber = :trackNumber")})
-public class AppMedia implements Serializable {
+    , @NamedQuery(name = "AppMedia.findByTrackNumber", query = "SELECT a FROM AppMedia a WHERE a.trackNumber = :trackNumber")
+    , @NamedQuery(name = "AppMedia.findByUserId", query = "SELECT a FROM AppMedia a WHERE a.userId = :userId")
+})
+public class AppMedia implements Serializable
+{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -93,217 +96,265 @@ public class AppMedia implements Serializable {
     private String album;
     @Column(name = "track_number")
     private Integer trackNumber;
-    
+    @Basic(optional = false)
+    @Column(name = "user_id")
+    private int userId;
 
-    public AppMedia() {
+    public AppMedia()
+    {
     }
 
-    public AppMedia(Integer mediaId) {
+    public AppMedia(Integer mediaId)
+    {
         this.mediaId = mediaId;
     }
 
-    public AppMedia(Integer mediaId, String title, String type) {
+    public AppMedia(Integer mediaId, String title, String type, int userId)
+    {
         this.mediaId = mediaId;
         this.title = title;
         this.type = type;
+        this.userId = userId;
     }
 
-    public Integer getMediaId() {
+    public Integer getMediaId()
+    {
         return mediaId;
     }
 
-    public void setMediaId(Integer mediaId) {
+    public void setMediaId(Integer mediaId)
+    {
         this.mediaId = mediaId;
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         this.title = title;
     }
 
-    public String getType() {
+    public String getType()
+    {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(String type)
+    {
         this.type = type;
     }
 
-    public String getFormat() {
+    public String getFormat()
+    {
         return format;
     }
 
-    public void setFormat(String format) {
+    public void setFormat(String format)
+    {
         this.format = format;
     }
 
-    public Integer getYear() {
+    public Integer getYear()
+    {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(Integer year)
+    {
         this.year = year;
     }
 
-    public String getGenre() {
+    public String getGenre()
+    {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(String genre)
+    {
         this.genre = genre;
     }
 
-    public String getLocation() {
+    public String getLocation()
+    {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(String location)
+    {
         this.location = location;
     }
 
-    public Integer getRating() {
+    public Integer getRating()
+    {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Integer rating)
+    {
         this.rating = rating;
     }
 
-    public String getLoanedTo() {
+    public String getLoanedTo()
+    {
         return loanedTo;
     }
 
-    public void setLoanedTo(String loanedTo) {
+    public void setLoanedTo(String loanedTo)
+    {
         this.loanedTo = loanedTo;
     }
 
-    public String getLoanedDate() {
+    public String getLoanedDate()
+    {
         return loanedDate;
     }
 
-    public void setLoanedDate(String loanedDate) {
+    public void setLoanedDate(String loanedDate)
+    {
         this.loanedDate = loanedDate;
     }
 
-    public String getAuthor() {
+    public String getAuthor()
+    {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(String author)
+    {
         this.author = author;
     }
 
-    public String getVolume() {
+    public String getVolume()
+    {
         return volume;
     }
 
-    public void setVolume(String volume) {
+    public void setVolume(String volume)
+    {
         this.volume = volume;
     }
 
-    public String getPublisher() {
+    public String getPublisher()
+    {
         return publisher;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(String publisher)
+    {
         this.publisher = publisher;
     }
 
-    public String getVersion() {
+    public String getVersion()
+    {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(String version)
+    {
         this.version = version;
     }
 
-    public String getEdition() {
+    public String getEdition()
+    {
         return edition;
     }
 
-    public void setEdition(String edition) {
+    public void setEdition(String edition)
+    {
         this.edition = edition;
     }
 
-    public String getDirector() {
+    public String getDirector()
+    {
         return director;
     }
 
-    public void setDirector(String director) {
+    public void setDirector(String director)
+    {
         this.director = director;
     }
 
-    public String getDuration() {
+    public String getDuration()
+    {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(String duration)
+    {
         this.duration = duration;
     }
 
-    public String getArtist() {
+    public String getArtist()
+    {
         return artist;
     }
 
-    public void setArtist(String artist) {
+    public void setArtist(String artist)
+    {
         this.artist = artist;
     }
 
-    public String getAlbum() {
+    public String getAlbum()
+    {
         return album;
     }
 
-    public void setAlbum(String album) {
+    public void setAlbum(String album)
+    {
         this.album = album;
     }
 
-    public Integer getTrackNumber() {
+    public Integer getTrackNumber()
+    {
         return trackNumber;
     }
 
-    public void setTrackNumber(Integer trackNumber) {
+    public void setTrackNumber(Integer trackNumber)
+    {
         this.trackNumber = trackNumber;
     }
 
+    public int getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(int userId)
+    {
+        this.userId = userId;
+    }
+
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 0;
         hash += (mediaId != null ? mediaId.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Object object)
+    {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AppMedia)) {
+        if (!(object instanceof AppMedia))
+        {
             return false;
         }
         AppMedia other = (AppMedia) object;
-        if ((this.mediaId == null && other.mediaId != null) || (this.mediaId != null && !this.mediaId.equals(other.mediaId))) {
+        if ((this.mediaId == null && other.mediaId != null) || (this.mediaId != null && !this.mediaId.equals(other.mediaId)))
+        {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "dbClasses.AppMedia[ mediaId=" + mediaId + " ]";
     }
-    
-    public String getCreator(){
-    if(MediaType.LITERATURE.getValue().equals(this.type)){
-        return this.author;
-    }
-    if(MediaType.MOVIE.getValue().equals(this.type)){
-        return this.director;
-    }
-    if(MediaType.MUSIC.getValue().equals(this.type)){
-        return this.artist;
-    }
-    return null;
-}
     
 }

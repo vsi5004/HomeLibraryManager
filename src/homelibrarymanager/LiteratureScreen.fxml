@@ -57,6 +57,11 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
+                  <TextField fx:id="TF_Year" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Year" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
                   <TextField fx:id="TF_Volume" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Volume" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />

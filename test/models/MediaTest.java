@@ -5,22 +5,26 @@
  */
 package models;
 
+import Enums.MediaType;
 import junit.framework.TestCase;
 
 /**
  *
  * @author Ivan
  */
-public class MediaTest extends TestCase {
-    
-    public MediaTest(String testName) {
+public class MediaTest extends TestCase
+{
+
+    public MediaTest(String testName)
+    {
         super(testName);
     }
 
     /**
      * Test of setTitle method, of class Media.
      */
-    public void testSetTitle() {
+    public void testSetTitle()
+    {
         System.out.println("setTitle");
         String newTitle = "";
         Media instance = null;
@@ -32,7 +36,8 @@ public class MediaTest extends TestCase {
     /**
      * Test of getTitle method, of class Media.
      */
-    public void testGetTitle() {
+    public void testGetTitle()
+    {
         System.out.println("getTitle");
         Media instance = null;
         String expResult = "";
@@ -43,25 +48,14 @@ public class MediaTest extends TestCase {
     }
 
     /**
-     * Test of setType method, of class Media.
-     */
-    public void testSetType() {
-        System.out.println("setType");
-        String newType = "";
-        Media instance = null;
-        instance.setType(newType);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getType method, of class Media.
      */
-    public void testGetType() {
+    public void testGetType()
+    {
         System.out.println("getType");
         Media instance = null;
-        String expResult = "";
-        String result = instance.getType();
+        MediaType expResult = MediaType.LITERATURE;
+        MediaType result = instance.getType();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -70,7 +64,8 @@ public class MediaTest extends TestCase {
     /**
      * Test of setLocation method, of class Media.
      */
-    public void testSetLocation() {
+    public void testSetLocation()
+    {
         System.out.println("setLocation");
         String newLocation = "";
         Media instance = null;
@@ -82,7 +77,8 @@ public class MediaTest extends TestCase {
     /**
      * Test of getLocation method, of class Media.
      */
-    public void testGetLocation() {
+    public void testGetLocation()
+    {
         System.out.println("getLocation");
         Media instance = null;
         String expResult = "";
@@ -95,7 +91,8 @@ public class MediaTest extends TestCase {
     /**
      * Test of setLoanedTo method, of class Media.
      */
-    public void testSetLoanedTo() {
+    public void testSetLoanedTo()
+    {
         System.out.println("setLoanedTo");
         String newLoanedTo = "";
         Media instance = null;
@@ -107,7 +104,8 @@ public class MediaTest extends TestCase {
     /**
      * Test of getLoanedTo method, of class Media.
      */
-    public void testGetLoanedTo() {
+    public void testGetLoanedTo()
+    {
         System.out.println("getLoanedTo");
         Media instance = null;
         String expResult = "";
@@ -120,7 +118,8 @@ public class MediaTest extends TestCase {
     /**
      * Test of setLoanedDate method, of class Media.
      */
-    public void testSetLoanedDate() {
+    public void testSetLoanedDate()
+    {
         System.out.println("setLoanedDate");
         String newLoanedDate = "";
         Media instance = null;
@@ -132,7 +131,8 @@ public class MediaTest extends TestCase {
     /**
      * Test of getLoanedDate method, of class Media.
      */
-    public void testGetLoanedDate() {
+    public void testGetLoanedDate()
+    {
         System.out.println("getLoanedDate");
         Media instance = null;
         String expResult = "";
@@ -141,5 +141,5 @@ public class MediaTest extends TestCase {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

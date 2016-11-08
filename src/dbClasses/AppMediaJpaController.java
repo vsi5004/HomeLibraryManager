@@ -19,117 +19,149 @@ import javax.persistence.criteria.Root;
  *
  * @author Ivan
  */
-public class AppMediaJpaController implements Serializable {
+public class AppMediaJpaController implements Serializable
+{
 
-    public AppMediaJpaController(EntityManagerFactory emf) {
+    public AppMediaJpaController(EntityManagerFactory emf)
+    {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
 
-    public EntityManager getEntityManager() {
+    public EntityManager getEntityManager()
+    {
         return emf.createEntityManager();
     }
 
-    public void create(AppMedia appMedia) {
+    public void create(AppMedia appMedia)
+    {
         EntityManager em = null;
-        try {
+        try
+        {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(appMedia);
             em.getTransaction().commit();
-        } finally {
-            if (em != null) {
+        } finally
+        {
+            if (em != null)
+            {
                 em.close();
             }
         }
     }
 
-    public void edit(AppMedia appMedia) throws NonexistentEntityException, Exception {
+    public void edit(AppMedia appMedia) throws NonexistentEntityException, Exception
+    {
         EntityManager em = null;
-        try {
+        try
+        {
             em = getEntityManager();
             em.getTransaction().begin();
             appMedia = em.merge(appMedia);
             em.getTransaction().commit();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
+            if (msg == null || msg.length() == 0)
+            {
                 Integer id = appMedia.getMediaId();
-                if (findAppMedia(id) == null) {
+                if (findAppMedia(id) == null)
+                {
                     throw new NonexistentEntityException("The appMedia with id " + id + " no longer exists.");
                 }
             }
             throw ex;
-        } finally {
-            if (em != null) {
+        } finally
+        {
+            if (em != null)
+            {
                 em.close();
             }
         }
     }
 
-    public void destroy(Integer id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException
+    {
         EntityManager em = null;
-        try {
+        try
+        {
             em = getEntityManager();
             em.getTransaction().begin();
             AppMedia appMedia;
-            try {
+            try
+            {
                 appMedia = em.getReference(AppMedia.class, id);
                 appMedia.getMediaId();
-            } catch (EntityNotFoundException enfe) {
+            } catch (EntityNotFoundException enfe)
+            {
                 throw new NonexistentEntityException("The appMedia with id " + id + " no longer exists.", enfe);
             }
             em.remove(appMedia);
             em.getTransaction().commit();
-        } finally {
-            if (em != null) {
+        } finally
+        {
+            if (em != null)
+            {
                 em.close();
             }
         }
     }
 
-    public List<AppMedia> findAppMediaEntities() {
+    public List<AppMedia> findAppMediaEntities()
+    {
         return findAppMediaEntities(true, -1, -1);
     }
 
-    public List<AppMedia> findAppMediaEntities(int maxResults, int firstResult) {
+    public List<AppMedia> findAppMediaEntities(int maxResults, int firstResult)
+    {
         return findAppMediaEntities(false, maxResults, firstResult);
     }
 
-    private List<AppMedia> findAppMediaEntities(boolean all, int maxResults, int firstResult) {
+    private List<AppMedia> findAppMediaEntities(boolean all, int maxResults, int firstResult)
+    {
         EntityManager em = getEntityManager();
-        try {
+        try
+        {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(AppMedia.class));
             Query q = em.createQuery(cq);
-            if (!all) {
+            if (!all)
+            {
                 q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);
             }
             return q.getResultList();
-        } finally {
+        } finally
+        {
             em.close();
         }
     }
 
-    public AppMedia findAppMedia(Integer id) {
+    public AppMedia findAppMedia(Integer id)
+    {
         EntityManager em = getEntityManager();
-        try {
+        try
+        {
             return em.find(AppMedia.class, id);
-        } finally {
+        } finally
+        {
             em.close();
         }
     }
 
-    public int getAppMediaCount() {
+    public int getAppMediaCount()
+    {
         EntityManager em = getEntityManager();
-        try {
+        try
+        {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             Root<AppMedia> rt = cq.from(AppMedia.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
-        } finally {
+        } finally
+        {
             em.close();
         }
     }
