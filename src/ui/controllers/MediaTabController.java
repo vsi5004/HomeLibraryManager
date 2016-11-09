@@ -23,6 +23,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import models.Literature;
+import models.Media;
+import models.Movie;
+import models.Music;
 
 /**
  * FXML Controller class
@@ -35,21 +39,21 @@ public class MediaTabController implements Initializable
     @FXML
     private Tab TB_Media;
     @FXML
-    private TableView<AppMedia> TV_Media;
+    private TableView<Media> TV_Media;
     @FXML
-    private TableColumn<AppMedia, String> TC_Title;
+    private TableColumn<Media, String> TC_Title;
     @FXML
-    private TableColumn<AppMedia, String> TC_Creator;
+    private TableColumn<Media, String> TC_Creator;
     @FXML
-    private TableColumn<AppMedia, MediaType> TC_Type;
+    private TableColumn<Media, MediaType> TC_Type;
     @FXML
-    private TableColumn<AppMedia, MediaFormat> TC_Format;
+    private TableColumn<Media, MediaFormat> TC_Format;
     @FXML
-    private TableColumn<AppMedia, Integer> TC_Rating;
+    private TableColumn<Media, Integer> TC_Rating;
     @FXML
-    private TableColumn<AppMedia, String> TC_Location;
+    private TableColumn<Media, String> TC_Location;
 
-    private ObservableList<AppMedia> mediaData = FXCollections.observableArrayList();
+    private ObservableList<Media> mediaData = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -57,12 +61,12 @@ public class MediaTabController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        TC_Title.setCellValueFactory(new PropertyValueFactory<AppMedia, String>("title"));
-        TC_Creator.setCellValueFactory(new PropertyValueFactory<AppMedia, String>("creator"));
-        TC_Type.setCellValueFactory(new PropertyValueFactory<AppMedia, MediaType>("type"));
-        TC_Format.setCellValueFactory(new PropertyValueFactory<AppMedia, MediaFormat>("format"));
-        TC_Rating.setCellValueFactory(new PropertyValueFactory<AppMedia, Integer>("rating"));
-        TC_Location.setCellValueFactory(new PropertyValueFactory<AppMedia, String>("location"));
+        TC_Title.setCellValueFactory(new PropertyValueFactory<Media, String>("title"));
+        TC_Creator.setCellValueFactory(new PropertyValueFactory<Media, String>("creator"));
+        TC_Type.setCellValueFactory(new PropertyValueFactory<Media, MediaType>("type"));
+        TC_Format.setCellValueFactory(new PropertyValueFactory<Media, MediaFormat>("format"));
+        TC_Rating.setCellValueFactory(new PropertyValueFactory<Media, Integer>("rating"));
+        TC_Location.setCellValueFactory(new PropertyValueFactory<Media, String>("location"));
 
         syncMediaList();
         TV_Media.setItems(mediaData);
@@ -70,9 +74,31 @@ public class MediaTabController implements Initializable
 
     private void syncMediaList()
     {
+        mediaData.clear();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
         AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
         List <AppMedia> Media = jpaMedia.findAppMediaEntities();
-        mediaData = FXCollections.observableArrayList(Media);
+        
+        for(AppMedia m : Media){
+            mediaData.add(transferToMediaModel(m));
+        }
+    }
+    
+    //Method that converts database model into program model for display in table
+    private Media transferToMediaModel(AppMedia dbMedia){
+        if(MediaType.valueOf(dbMedia.getType().toUpperCase()) == MediaType.LITERATURE){
+            Literature literature = new Literature(dbMedia.getMediaId(), dbMedia.getTitle(), MediaType.valueOf(dbMedia.getType().toUpperCase()), MediaFormat.valueOf(dbMedia.getFormat().toUpperCase()), dbMedia.getUserId(), dbMedia.getAuthor());
+            return literature;
+        }
+        else if(MediaType.valueOf(dbMedia.getType().toUpperCase()) == MediaType.MOVIE){
+            Movie movie = new Movie(dbMedia.getMediaId(), dbMedia.getTitle(), MediaType.valueOf(dbMedia.getType().toUpperCase()), MediaFormat.valueOf(dbMedia.getFormat().toUpperCase()), dbMedia.getUserId(), dbMedia.getDirector());
+            return movie;
+        }
+        else if(MediaType.valueOf(dbMedia.getType().toUpperCase()) == MediaType.MUSIC){
+            Music music = new Music(dbMedia.getMediaId(), dbMedia.getTitle(), MediaType.valueOf(dbMedia.getType().toUpperCase()), MediaFormat.valueOf(dbMedia.getFormat().toUpperCase()), dbMedia.getUserId(), dbMedia.getArtist());
+            return music;
+        }
+        
+        return null;
     }
 }

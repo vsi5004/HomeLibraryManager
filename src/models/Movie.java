@@ -18,11 +18,10 @@ public class Movie extends Media
     private String director;
     private String duration;
 
-    public Movie(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID, String newLoanedTo, String newLoanedDate, String newLocation, String newGenre, int newRating, int newYear, String newDirector, String newDuration)
+    public Movie(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID, String newDirector)
     {
-        super(newMediaID, newTitle, newType, newFormat, newUserID, newLoanedTo, newLoanedDate, newLocation, newGenre, newRating, newYear);
+        super(newMediaID, newTitle, newType, newFormat, newUserID);
         this.director = newDirector;
-        this.duration = newDuration;
         super.setCreator(this.director);
     }
 

@@ -19,12 +19,10 @@ public class Music extends Media
     private String album;
     private int trackNumber;
 
-    public Music(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID, String newLoanedTo, String newLoanedDate, String newLocation, String newGenre, int newRating, int newYear, String newArtist, String newAlbum, int newTrackNumber)
+    public Music(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID, String newArtist)
     {
-        super(newMediaID, newTitle, newType, newFormat, newUserID, newLoanedTo, newLoanedDate, newLocation, newGenre, newRating, newYear);
+        super(newMediaID, newTitle, newType, newFormat, newUserID);
         this.artist = newArtist;
-        this.album = newAlbum;
-        this.trackNumber = newTrackNumber;
         super.setCreator(this.artist);
     }
 

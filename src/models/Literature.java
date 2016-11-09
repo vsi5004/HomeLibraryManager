@@ -21,14 +21,10 @@ public class Literature extends Media
     private String version;
     private String edition;
 
-    public Literature(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID, String newLoanedTo, String newLoanedDate, String newLocation, String newGenre, int newRating, int newYear, String newAuthor, String newVolume, String newPublisher, String newVersion, String newEdition)
+    public Literature(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID, String newAuthor)
     {
-        super(newMediaID, newTitle, newType, newFormat, newUserID, newLoanedTo, newLoanedDate, newLocation, newGenre, newRating, newYear);
+        super(newMediaID, newTitle, newType, newFormat, newUserID);
         this.author = newAuthor;
-        this.volume = newVolume;
-        this.publisher = newPublisher;
-        this.version = newVersion;
-        this.edition = newEdition;
         super.setCreator(this.author);
     }
 
@@ -60,5 +56,30 @@ public class Literature extends Media
     public String getEdition()
     {
         return this.edition;
+    }
+
+    public void setAuthor(String author)
+    {
+        this.author = author;
+    }
+
+    public void setVolume(String volume)
+    {
+        this.volume = volume;
+    }
+
+    public void setPublisher(String publisher)
+    {
+        this.publisher = publisher;
+    }
+
+    public void setVersion(String version)
+    {
+        this.version = version;
+    }
+
+    public void setEdition(String edition)
+    {
+        this.edition = edition;
     }
 }

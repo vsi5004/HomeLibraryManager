@@ -28,18 +28,13 @@ public class Media
     private MediaFormat format;
     private String creator;
 
-    public Media(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID, String newLoanedTo, String newLoanedDate, String newLocation, String newGenre, int newRating, int newYear)
+    public Media(int newMediaID, String newTitle, MediaType newType, MediaFormat newFormat, int newUserID)
     {
         this.mediaID = newMediaID;
         this.title = newTitle;
         this.type = newType;
         this.userID = newUserID;
         this.format = newFormat;
-        this.loanedTo = newLoanedTo;
-        this.loanedDate = newLoanedDate;
-        this.genre = newGenre;
-        this.rating = newRating;
-        this.year = newYear;
     }
 
     public void setYear(int newYear)
@@ -127,5 +122,15 @@ public class Media
     public String getLoanedDate()
     {
         return this.loanedDate;
+    }
+
+    public int getRating()
+    {
+        return rating;
+    }
+
+    public void setRating(int rating)
+    {
+        this.rating = rating;
     }
 }
