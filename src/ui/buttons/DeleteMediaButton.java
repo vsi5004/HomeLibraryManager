@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package ui.buttons;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
+import models.Media;
 
 /**
  *
  * @author Ivan
  */
-public class DeleteButton extends TableCell<Media, Boolean> {
+public class DeleteMediaButton extends TableCell<Media, Boolean> {
     final Button cellButton = new Button("Delete");
  
-    public DeleteButton(){
+    public DeleteMediaButton(){
  
         cellButton.setOnAction(new EventHandler<ActionEvent>(){
  

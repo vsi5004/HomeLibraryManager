@@ -31,8 +31,8 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import models.DeleteButton;
-import models.EditButton;
+import ui.buttons.DeleteMediaButton;
+import ui.buttons.EditMediaButton;
 import models.Literature;
 import models.Media;
 import models.Movie;
@@ -109,10 +109,10 @@ public class MediaTabController implements Initializable
             {
                 if (edit)
                 {
-                    return new EditButton();
+                    return new EditMediaButton();
                 } else
                 {
-                    return new DeleteButton();
+                    return new DeleteMediaButton();
                 }
             }
 
