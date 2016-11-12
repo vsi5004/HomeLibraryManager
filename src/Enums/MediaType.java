@@ -10,7 +10,7 @@ package Enums;
  * @author Ivan
  */
 public enum MediaType {
-    LITERATURE("Literature"), MUSIC("Music"), MOVIE("Movie");
+    Literature("Literature"), Music("Music"), Movie("Movie");
     private String value;
     
     private MediaType(String value){

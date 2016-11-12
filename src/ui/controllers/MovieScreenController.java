@@ -86,7 +86,7 @@ public class MovieScreenController implements Initializable
             if (editedMedia.getMediaId() != null)
             {
                 AppMedia media = jpaMedia.findAppMedia(editedMedia.getMediaId());
-                media.setType(MediaType.MOVIE.getValue());
+                media.setType(MediaType.Movie.getValue());
                 media.setFormat(CB_Format.getValue().toString());
                 media.setTitle(TF_Title.getText());
                 media.setDirector(TF_Director.getText());
@@ -111,7 +111,7 @@ public class MovieScreenController implements Initializable
             {
                 AppMedia media = new AppMedia();
                 media.setUserId(LoggedInUser.getUserID());
-                media.setType(MediaType.MOVIE.getValue());
+                media.setType(MediaType.Movie.getValue());
                 media.setFormat(CB_Format.getValue().toString());
                 media.setTitle(TF_Title.getText());
                 media.setDirector(TF_Director.getText());
@@ -193,8 +193,10 @@ public class MovieScreenController implements Initializable
         return false;
     }
 
-    public void initEditMedia(AppMedia media)
+    public void initEditMedia(int mediaID)
     {
-        editedMedia = media;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
+        AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
+        editedMedia = jpaMedia.findAppMedia(mediaID);
     }
 }

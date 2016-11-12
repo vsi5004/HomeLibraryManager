@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 
-<AnchorPane id="MediaTab" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="ui.controllers.MediaTabController">
+<AnchorPane id="MediaTab" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MediaTabController">
     <children>
         <TableView fx:id="TV_Media" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <columns>
@@ -17,6 +17,8 @@
                 <TableColumn fx:id="TC_Format" prefWidth="100.0" text="Format" />
                 <TableColumn fx:id="TC_Rating" prefWidth="100.0" text="Rating" />
                 <TableColumn fx:id="TC_Location" prefWidth="100.0" text="Location" />
+                <TableColumn fx:id="TC_Edit" prefWidth="45.0" />
+                <TableColumn fx:id="TC_Delete" prefWidth="60.0" />
             </columns>
         </TableView>
     </children>

@@ -54,7 +54,7 @@ public class MediaTest extends TestCase
     {
         System.out.println("getType");
         Media instance = null;
-        MediaType expResult = MediaType.LITERATURE;
+        MediaType expResult = MediaType.Literature;
         MediaType result = instance.getType();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

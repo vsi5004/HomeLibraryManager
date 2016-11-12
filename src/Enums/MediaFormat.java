@@ -10,7 +10,7 @@ package Enums;
  * @author Ivan
  */
 public enum MediaFormat {
-    BOOK("Book"), MAGAZINE("Magazine"), DOCUMENT("Document"), DVD("DVD"), BLURAY("BLURAY"), VHS("VHS"), CD("CD"), TAPE("Tape"), RECORD("Record"), OTHER("Other");
+    Book("Book"), Magazine("Magazine"), Document("Document"), DVD("DVD"), BLURAY("BLURAY"), VHS("VHS"), CD("CD"), Tape("Tape"), Record("Record"), Other("Other");
     private String value;
     
     private MediaFormat(String value){

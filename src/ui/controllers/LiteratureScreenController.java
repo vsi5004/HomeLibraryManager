@@ -5,6 +5,7 @@
  */
 package ui.controllers;
 
+import Enums.MediaFormat;
 import Enums.MediaType;
 import dbClasses.AppMedia;
 import dbClasses.AppMediaJpaController;
@@ -36,7 +37,7 @@ public class LiteratureScreenController implements Initializable
 
     HomeLibraryManager manager = new HomeLibraryManager();
     @FXML
-    private ComboBox<?> CB_Format;
+    private ComboBox<MediaFormat> CB_Format;
     @FXML
     private TextField TF_Title;
     @FXML
@@ -76,7 +77,29 @@ public class LiteratureScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        if (editedMedia.getMediaId() != null)
+        {
+            CB_Format.setValue(MediaFormat.valueOf(editedMedia.getFormat()));
+            TF_Title.setText(editedMedia.getTitle());
+            TF_Author.setText(editedMedia.getAuthor());
+            TF_Edition.setText(editedMedia.getEdition());
+            TF_Version.setText(editedMedia.getVersion());
+            TF_Volume.setText(editedMedia.getVolume());
+            TF_Publisher.setText(editedMedia.getPublisher());
+            TF_LoanedTo.setText(editedMedia.getLoanedTo());
+            TF_LoanedDate.setText(editedMedia.getLoanedDate());
+            TF_Location.setText(editedMedia.getLocation());
+            TF_Genre.setText(editedMedia.getGenre());
+            if (editedMedia.getYear() != null)
+            {
+                TF_Year.setText(editedMedia.getYear().toString());
+            }
+            if (editedMedia.getRating() != null)
+            {
+                TF_Rating.setText(editedMedia.getRating().toString());
+            }
+
+        }
     }
 
     @FXML
@@ -88,12 +111,12 @@ public class LiteratureScreenController implements Initializable
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
             AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
-
+            
+            //if we're editing an existing media item
             if (editedMedia.getMediaId() != null)
             {
                 AppMedia media = jpaMedia.findAppMedia(editedMedia.getMediaId());
-                media.setType(MediaType.LITERATURE.getValue());
-                media.setFormat(CB_Format.getValue().toString());
+                media.setFormat(CB_Format.getValue().getValue());
                 media.setTitle(TF_Title.getText());
                 media.setAuthor(TF_Author.getText());
                 media.setVolume(TF_Volume.getText());
@@ -120,7 +143,7 @@ public class LiteratureScreenController implements Initializable
             {
                 AppMedia media = new AppMedia();
                 media.setUserId(LoggedInUser.getUserID());
-                media.setType(MediaType.LITERATURE.getValue());
+                media.setType(MediaType.Literature.getValue());
                 media.setFormat(CB_Format.getValue().toString());
                 media.setTitle(TF_Title.getText());
                 media.setAuthor(TF_Author.getText());
@@ -169,7 +192,7 @@ public class LiteratureScreenController implements Initializable
             LB_ValidationMessage.setText("Please fill in Title, Author, and Format fields!");
             return false;
         }
-        if (MediaExists(TF_Title.getText(), TF_Author.getText()) && !LoggedInUser.getEditCurrent())
+        if (editedMedia.getMediaId() == null && MediaExists(TF_Title.getText(), TF_Author.getText()))
         {
             LB_ValidationMessage.setText("Media item already exists!");
             return false;
@@ -205,8 +228,11 @@ public class LiteratureScreenController implements Initializable
         return false;
     }
 
-    public void initEditMedia(AppMedia media)
+    public void initEditMedia(int mediaID)
     {
-        editedMedia = media;
+        System.out.println("Here I am!");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
+        AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
+        editedMedia = jpaMedia.findAppMedia(mediaID);
     }
 }

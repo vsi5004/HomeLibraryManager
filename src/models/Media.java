@@ -21,7 +21,7 @@ public class Media
     private int year;
     private String genre;
     private String location;
-    private int rating;
+    private int rating = 0;
     private String loanedTo;
     private String loanedDate;
     private MediaType type;

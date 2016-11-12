@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.Media;
 import ui.controllers.LoginScreenController;
 import ui.controllers.MainScreenController;
 import ui.controllers.MovieScreenController;
@@ -58,19 +59,47 @@ public class HomeLibraryManager extends Application {
     public void gotoMediaScreen(Stage stage, MediaType type) throws Exception{
         FXMLLoader loader = new FXMLLoader();
         
-        if(type == MediaType.LITERATURE){
+        if(type == MediaType.Literature){
             loader = new FXMLLoader(getClass().getResource("LiteratureScreen.fxml"));
-            LiteratureScreenController controller = (LiteratureScreenController) loader.getController();
+            LiteratureScreenController controller =  new LiteratureScreenController();
+            loader.setController(controller);
         }
-        else if(type == MediaType.MOVIE){
+        else if(type == MediaType.Movie){
             loader = new FXMLLoader(getClass().getResource("MovieScreen.fxml"));
-            MovieScreenController controller = (MovieScreenController) loader.getController();
+            MovieScreenController controller = new MovieScreenController();
+            loader.setController(controller); 
         }
-        else if(type == MediaType.MUSIC){
+        else if(type == MediaType.Music){
             loader = new FXMLLoader(getClass().getResource("MusicScreen.fxml"));
-            LiteratureScreenController controller = (LiteratureScreenController) loader.getController();
+            MusicScreenController controller = new MusicScreenController();
+            loader.setController(controller);
         }
 
+        setupScene(stage, "Home Library Manager Media", loader);
+    }
+    
+    public void gotoMediaScreen(Stage stage, MediaType type, int editMediaID) throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        
+        if(type == MediaType.Literature){
+            loader = new FXMLLoader(getClass().getResource("LiteratureScreen.fxml"));
+            LiteratureScreenController controller =  new LiteratureScreenController();
+            controller.initEditMedia(editMediaID);
+            loader.setController(controller);
+
+        }
+        else if(type == MediaType.Movie){
+            loader = new FXMLLoader(getClass().getResource("MovieScreen.fxml"));
+            MovieScreenController controller = new MovieScreenController();
+            controller.initEditMedia(editMediaID);
+            loader.setController(controller);
+        }
+        else if(type == MediaType.Music){
+            loader = new FXMLLoader(getClass().getResource("MusicScreen.fxml"));
+            MusicScreenController controller = new MusicScreenController();
+            controller.initEditMedia(editMediaID);
+            loader.setController(controller);
+        }
         setupScene(stage, "Home Library Manager Media", loader);
     }
     
