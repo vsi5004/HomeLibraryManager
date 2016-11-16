@@ -5,6 +5,7 @@
  */
 package ui.buttons;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -16,29 +17,38 @@ import models.Media;
  *
  * @author Ivan
  */
-public class DeleteMediaButton extends TableCell<Media, Boolean> {
+public class DeleteMediaButton extends TableCell<Media, Boolean>
+{
+
     final Button cellButton = new Button("Delete");
- 
-    public DeleteMediaButton(){
- 
-        cellButton.setOnAction(new EventHandler<ActionEvent>(){
- 
+
+    public DeleteMediaButton(ObservableList<Media> mediaData)
+    {
+
+        cellButton.setOnAction(new EventHandler<ActionEvent>()
+        {
+
             @Override
-            public void handle(ActionEvent t) {
-                //int selectedIndex = getTableRow().getIndex();
-                //BillOfMaterial toRemove = (BillOfMaterial) tblView.getItems().get(selectedIndex);
-                //tempBoM.remove(toRemove);
-                //prepareBoMTable();
+            public void handle(ActionEvent t)
+            {
+                Media toDelete = (Media) DeleteMediaButton.this.getTableView().getItems().get(DeleteMediaButton.this.getIndex());
+                mediaData.remove(toDelete);
+
             }
         });
     }
- 
+
     //Display button if the row is not empty
     @Override
-    protected void updateItem(Boolean t, boolean empty) {
+    protected void updateItem(Boolean t, boolean empty)
+    {
         super.updateItem(t, empty);
-        if(!empty){
+        if (!empty)
+        {
             setGraphic(cellButton);
+        } else
+        {
+            setGraphic(null);
         }
     }
 }

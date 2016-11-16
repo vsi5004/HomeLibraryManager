@@ -57,6 +57,9 @@ public class EditMediaButton extends TableCell<Media, Boolean> {
         super.updateItem(t, empty);
         if(!empty){
             setGraphic(cellButton);
+        }else
+        {
+            setGraphic(null);
         }
     }
 }

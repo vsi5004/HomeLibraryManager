@@ -112,7 +112,7 @@ public class MediaTabController implements Initializable
                     return new EditMediaButton();
                 } else
                 {
-                    return new DeleteMediaButton();
+                    return new DeleteMediaButton(mediaData);
                 }
             }
 
