@@ -5,6 +5,7 @@
  */
 package ui.controllers;
 
+import Enums.MediaFormat;
 import Enums.MediaType;
 import dbClasses.AppMedia;
 import dbClasses.AppMediaJpaController;
@@ -36,7 +37,7 @@ public class MovieScreenController implements Initializable
 
     HomeLibraryManager manager = new HomeLibraryManager();
     @FXML
-    private ComboBox<?> CB_Format;
+    private ComboBox<MediaFormat> CB_Format;
     @FXML
     private TextField TF_Title;
     @FXML
@@ -70,7 +71,25 @@ public class MovieScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        if (editedMedia.getMediaId() != null)
+        {
+            CB_Format.setValue(MediaFormat.valueOf(editedMedia.getFormat()));
+            TF_Title.setText(editedMedia.getTitle());
+            TF_Duration.setText(editedMedia.getDuration());
+            TF_Director.setText(editedMedia.getDirector());
+            TF_LoanedTo.setText(editedMedia.getLoanedTo());
+            TF_LoanedDate.setText(editedMedia.getLoanedDate());
+            TF_Location.setText(editedMedia.getLocation());
+            TF_Genre.setText(editedMedia.getGenre());
+            if (editedMedia.getYear() != null)
+            {
+                TF_Year.setText(editedMedia.getYear().toString());
+            }
+            if (editedMedia.getRating() != null)
+            {
+                TF_Rating.setText(editedMedia.getRating().toString());
+            }
+        }
     }
 
     @FXML

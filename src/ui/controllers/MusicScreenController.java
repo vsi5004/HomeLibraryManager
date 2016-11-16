@@ -5,6 +5,7 @@
  */
 package ui.controllers;
 
+import Enums.MediaFormat;
 import Enums.MediaType;
 import dbClasses.AppMedia;
 import dbClasses.AppMediaJpaController;
@@ -36,7 +37,7 @@ public class MusicScreenController implements Initializable
 
     HomeLibraryManager manager = new HomeLibraryManager();
     @FXML
-    private ComboBox<?> CB_Format;
+    private ComboBox<MediaFormat> CB_Format;
     @FXML
     private TextField TF_Title;
     @FXML
@@ -72,7 +73,29 @@ public class MusicScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        if (editedMedia.getMediaId() != null)
+        {
+            CB_Format.setValue(MediaFormat.valueOf(editedMedia.getFormat()));
+            TF_Title.setText(editedMedia.getTitle());
+            TF_Artist.setText(editedMedia.getArtist());
+            TF_Album.setText(editedMedia.getAlbum());
+            TF_LoanedTo.setText(editedMedia.getLoanedTo());
+            TF_LoanedDate.setText(editedMedia.getLoanedDate());
+            TF_Location.setText(editedMedia.getLocation());
+            TF_Genre.setText(editedMedia.getGenre());
+            if (editedMedia.getYear() != null)
+            {
+                TF_Year.setText(editedMedia.getYear().toString());
+            }
+            if (editedMedia.getRating() != null)
+            {
+                TF_Rating.setText(editedMedia.getRating().toString());
+            }
+            if (editedMedia.getTrackNumber() != null)
+            {
+                TF_TrackNumber.setText(editedMedia.getTrackNumber().toString());
+            }
+        }
     }
 
     @FXML
@@ -214,5 +237,6 @@ public class MusicScreenController implements Initializable
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
         AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
         editedMedia = jpaMedia.findAppMedia(mediaID);
+        System.out.println("Appmedia id" + mediaID);
     }
 }

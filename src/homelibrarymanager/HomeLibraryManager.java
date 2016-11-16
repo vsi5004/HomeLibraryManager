@@ -86,7 +86,6 @@ public class HomeLibraryManager extends Application {
             LiteratureScreenController controller =  new LiteratureScreenController();
             controller.initEditMedia(editMediaID);
             loader.setController(controller);
-
         }
         else if(type == MediaType.Movie){
             loader = new FXMLLoader(getClass().getResource("MovieScreen.fxml"));
