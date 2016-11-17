@@ -91,9 +91,9 @@ public class MainScreenController implements Initializable {
     @FXML
     private void HandleBT_EditUserInfoClicked(MouseEvent event) throws Exception {
         LoggedInUser.setLastPage("Main");
-        LoggedInUser.setEditCurrent(true);
+        //LoggedInUser.setEditCurrent(true);
         Stage stage = (Stage) BT_EditUserInfo.getScene().getWindow();
-        manager.gotoUserScreen(stage);
+        manager.gotoUserScreen(stage, LoggedInUser.getUserID());
     }
 
     @FXML

@@ -70,7 +70,13 @@ public class MovieScreenController implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
-    {
+    {  
+        //initialize combo box values
+        CB_Format.getItems().add(MediaFormat.DVD);
+        CB_Format.getItems().add(MediaFormat.BLURAY);
+        CB_Format.getItems().add(MediaFormat.VHS);
+        CB_Format.getItems().add(MediaFormat.Other);
+        
         if (editedMedia.getMediaId() != null)
         {
             CB_Format.setValue(MediaFormat.valueOf(editedMedia.getFormat()));
@@ -106,7 +112,7 @@ public class MovieScreenController implements Initializable
             {
                 AppMedia media = jpaMedia.findAppMedia(editedMedia.getMediaId());
                 media.setType(MediaType.Movie.getValue());
-                media.setFormat(CB_Format.getValue().toString());
+                media.setFormat(CB_Format.getValue().getValue());
                 media.setTitle(TF_Title.getText());
                 media.setDirector(TF_Director.getText());
                 media.setDuration(TF_Duration.getText());
@@ -131,7 +137,7 @@ public class MovieScreenController implements Initializable
                 AppMedia media = new AppMedia();
                 media.setUserId(LoggedInUser.getUserID());
                 media.setType(MediaType.Movie.getValue());
-                media.setFormat(CB_Format.getValue().toString());
+                media.setFormat(CB_Format.getValue().getValue());
                 media.setTitle(TF_Title.getText());
                 media.setDirector(TF_Director.getText());
                 media.setDuration(TF_Duration.getText());

@@ -73,6 +73,12 @@ public class MusicScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        //initialize combo box values
+        CB_Format.getItems().add(MediaFormat.CD);
+        CB_Format.getItems().add(MediaFormat.Record);
+        CB_Format.getItems().add(MediaFormat.Tape);
+        CB_Format.getItems().add(MediaFormat.Other);
+        
         if (editedMedia.getMediaId() != null)
         {
             CB_Format.setValue(MediaFormat.valueOf(editedMedia.getFormat()));
@@ -112,7 +118,7 @@ public class MusicScreenController implements Initializable
             {
                 AppMedia media = jpaMedia.findAppMedia(editedMedia.getMediaId());
                 media.setType(MediaType.Music.getValue());
-                media.setFormat(CB_Format.getValue().toString());
+                media.setFormat(CB_Format.getValue().getValue());
                 media.setTitle(TF_Title.getText());
                 media.setArtist(TF_Artist.getText());
                 media.setAlbum(TF_Album.getText());
@@ -141,7 +147,7 @@ public class MusicScreenController implements Initializable
                 AppMedia media = new AppMedia();
                 media.setUserId(LoggedInUser.getUserID());
                 media.setType(MediaType.Music.getValue());
-                media.setFormat(CB_Format.getValue().toString());
+                media.setFormat(CB_Format.getValue().getValue());
                 media.setTitle(TF_Title.getText());
                 media.setArtist(TF_Artist.getText());
                 media.setAlbum(TF_Album.getText());

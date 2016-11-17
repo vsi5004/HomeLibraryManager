@@ -30,7 +30,8 @@ import javax.persistence.Persistence;
  *
  * @author Ivan
  */
-public class UserScreenController implements Initializable {
+public class UserScreenController implements Initializable
+{
 
     HomeLibraryManager manager = new HomeLibraryManager();
     @FXML
@@ -49,47 +50,48 @@ public class UserScreenController implements Initializable {
     private Button BT_CancelUser;
     @FXML
     private Label LB_ValidationMessage;
-    
-    private AppUser editedUser;
+
+    private AppUser editedUser = new AppUser();
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         LB_ValidationMessage.setText("");
         CB_UserType.setVisible(true);
-        if (LoggedInUser.getEditCurrent()) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
-            AppUserJpaController jpaUser = new AppUserJpaController(emf);
-            AppUser currentUser = jpaUser.findAppUser(LoggedInUser.getUserID());
-            TF_UserName.setText(currentUser.getUsername());
-            TF_UserPassword.setText(currentUser.getUserPassword());
-            TA_SecurityQuestion.setText(currentUser.getSecurityQuestion());
-            TF_SecurityQuestionAnswer.setText(currentUser.getSecurityAnswer());
+        if (editedUser.getUsername() != null)
+        {
+            TF_UserName.setText(editedUser.getUsername());
+            TF_UserPassword.setText(editedUser.getUserPassword());
+            TA_SecurityQuestion.setText(editedUser.getSecurityQuestion());
+            TF_SecurityQuestionAnswer.setText(editedUser.getSecurityAnswer());
             CB_UserType.setVisible(false);
         }
     }
 
     @FXML
-    private void HandleBT_SaveUserClicked(MouseEvent event) throws Exception {
+    private void HandleBT_SaveUserClicked(MouseEvent event) throws Exception
+    {
 
-        if (ValidateFields()) {
+        if (ValidateFields())
+        {
             LB_ValidationMessage.setText("Storing in database, please wait.");
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
             AppUserJpaController jpaUser = new AppUserJpaController(emf);
 
-            if (LoggedInUser.getEditCurrent()) {
-                AppUser user = jpaUser.findAppUser(LoggedInUser.getUserID());
-                user.setUsername(TF_UserName.getText());
-                user.setUserPassword(TF_UserPassword.getText());
-                user.setSecurityQuestion(TA_SecurityQuestion.getText());
-                user.setSecurityAnswer(TF_SecurityQuestionAnswer.getText());
-                //user.setUserType(CB_UserType.getValue().toString().toUpperCase());
-                jpaUser.edit(user);
+            if (editedUser.getUsername() != null)
+            {
+                editedUser.setUsername(TF_UserName.getText());
+                editedUser.setUserPassword(TF_UserPassword.getText());
+                editedUser.setSecurityQuestion(TA_SecurityQuestion.getText());
+                editedUser.setSecurityAnswer(TF_SecurityQuestionAnswer.getText());
+                jpaUser.edit(editedUser);
 
-            } else {
+            } else
+            {
                 AppUser user = new AppUser();
                 user.setUsername(TF_UserName.getText());
                 user.setUserPassword(TF_UserPassword.getText());
@@ -103,42 +105,52 @@ public class UserScreenController implements Initializable {
     }
 
     @FXML
-    private void HandleBT_CancelUserClicked(MouseEvent event) throws Exception {
+    private void HandleBT_CancelUserClicked(MouseEvent event) throws Exception
+    {
         gotoLastPage();
     }
 
-    private void gotoLastPage() throws Exception {
+    private void gotoLastPage() throws Exception
+    {
         Stage stage = (Stage) BT_CancelUser.getScene().getWindow();
         LB_ValidationMessage.setText("");
-        if (LoggedInUser.getLastPage().equals("Login")) {
+        if (LoggedInUser.getLastPage().equals("Login"))
+        {
             LoggedInUser.setLastPage("User");
             manager.gotoLoginScreen(stage);
-        } else {
+        } else
+        {
             LoggedInUser.setLastPage("User");
-            LoggedInUser.setEditCurrent(false);
+            //LoggedInUser.setEditCurrent(false);
             manager.gotoMainScreen(stage);
         }
     }
 
-    private boolean ValidateFields() {
-        if (TF_UserName.getText().isEmpty() || TF_UserPassword.getText().isEmpty() || TA_SecurityQuestion.getText().isEmpty() || TF_SecurityQuestionAnswer.getText().isEmpty() || (CB_UserType.isVisible() && CB_UserType.getValue() == null)) {
+    private boolean ValidateFields()
+    {
+        if (TF_UserName.getText().isEmpty() || TF_UserPassword.getText().isEmpty() || TA_SecurityQuestion.getText().isEmpty() || TF_SecurityQuestionAnswer.getText().isEmpty() || (CB_UserType.isVisible() && CB_UserType.getValue() == null))
+        {
             LB_ValidationMessage.setText("Please fill in all fields!");
             return false;
         }
-        if (UsernameExists(TF_UserName.getText()) && !LoggedInUser.getEditCurrent()) {
+        if (UsernameExists(TF_UserName.getText()) && editedUser.getUsername() == null)
+        {
             LB_ValidationMessage.setText("Username already taken! Please pick another one.");
             return false;
         }
         return true;
     }
 
-    private boolean UsernameExists(String Username) {
+    private boolean UsernameExists(String Username)
+    {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
         AppUserJpaController jpaUser = new AppUserJpaController(emf);
         List<AppUser> users = jpaUser.findAppUserEntities();
 
-        for (AppUser p : users) {
-            if (Objects.equals(Username, p.getUsername())) {
+        for (AppUser p : users)
+        {
+            if (Objects.equals(Username, p.getUsername()))
+            {
                 return true;
             }
         }

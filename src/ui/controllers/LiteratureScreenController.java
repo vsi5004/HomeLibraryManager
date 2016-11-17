@@ -77,6 +77,12 @@ public class LiteratureScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        //initialize combo box values
+        CB_Format.getItems().add(MediaFormat.Book);
+        CB_Format.getItems().add(MediaFormat.Document);
+        CB_Format.getItems().add(MediaFormat.Magazine);
+        CB_Format.getItems().add(MediaFormat.Other);
+        
         if (editedMedia.getMediaId() != null)
         {
             CB_Format.setValue(MediaFormat.valueOf(editedMedia.getFormat()));
@@ -144,7 +150,7 @@ public class LiteratureScreenController implements Initializable
                 AppMedia media = new AppMedia();
                 media.setUserId(LoggedInUser.getUserID());
                 media.setType(MediaType.Literature.getValue());
-                media.setFormat(CB_Format.getValue().toString());
+                media.setFormat(CB_Format.getValue().getValue());
                 media.setTitle(TF_Title.getText());
                 media.setAuthor(TF_Author.getText());
                 media.setVolume(TF_Volume.getText());

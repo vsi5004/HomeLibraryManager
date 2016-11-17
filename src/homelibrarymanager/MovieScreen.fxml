@@ -34,14 +34,6 @@
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="DVD" />
-                            <String fx:value="Blue-ray" />
-                            <String fx:value="VHS" />
-                            <String fx:value="Other" />
-                        </FXCollections>
-                    </items>
                   </ComboBox>
                   <TextField fx:id="TF_Title" maxWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Title" VBox.vgrow="NEVER">
                      <VBox.margin>
