@@ -49,6 +49,8 @@ public class UserScreenController implements Initializable {
     private Button BT_CancelUser;
     @FXML
     private Label LB_ValidationMessage;
+    
+    private AppUser editedUser;
 
     /**
      * Initializes the controller class.
@@ -141,5 +143,12 @@ public class UserScreenController implements Initializable {
             }
         }
         return false;
+    }
+
+    public void initEditUser(int editUserID)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
+        AppUserJpaController jpaUser = new AppUserJpaController(emf);
+        editedUser = jpaUser.findAppUser(editUserID);
     }
 }

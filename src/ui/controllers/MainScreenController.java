@@ -57,12 +57,11 @@ public class MainScreenController implements Initializable {
     
     @FXML
     private Tab TB_Collections;
-    @FXML
-    private Tab TB_Users;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LB_UserGreeting.setText("Hello, " + LoggedInUser.getUserName());
+        
     }
 
     @FXML

@@ -52,7 +52,16 @@ public class HomeLibraryManager extends Application {
     
     public void gotoUserScreen(Stage stage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
-        UserScreenController controller = (UserScreenController) loader.getController();
+        UserScreenController controller = new UserScreenController();
+        loader.setController(controller);
+        setupScene(stage, "Home Library Manager User", loader);
+    }
+    
+    public void gotoUserScreen(Stage stage, int editUserID) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
+        UserScreenController controller = new UserScreenController();
+        controller.initEditUser(editUserID);
+        loader.setController(controller);
         setupScene(stage, "Home Library Manager User", loader);
     }
     

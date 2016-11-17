@@ -11,43 +11,46 @@ package models;
  * @author Ivan
  */
 public class User {
-    private String userID;
-    private String userName;
-    private String userPassword;
-    private String userStatus;
+    private int userID;
+    private String Username;
+    private String Password;
+    private String SecurityQ;
+    private String SecurityA;
+    private String Type;
     
-    public User(String newUserID, String newUserName, String newUserPassword, String newUserStatus){
+    public User(int newUserID, String newUserName, String newUserPassword, String newUserStatus, String newSQ, String newSA){
         this.userID = newUserID;
-        this.userName = newUserName;
-        this.userPassword = newUserPassword;
-        this.userStatus = newUserStatus;
+        this.Username = newUserName;
+        this.Password = newUserPassword;
+        this.SecurityQ = newSQ;
+        this.SecurityA = newSA;
+        this.Type = newUserStatus;
     }
     
-    public String getUserName(){
-        return userName;
+    public String getUsername(){
+        return Username;
     }
     
-    public void setUserName(String newUserName){
-        userName = newUserName;
+    public String getPassword(){
+        return Password;
     }
     
-    public String getuserID(){
+    public String getType(){
+        return Type;
+    }
+
+    public int getUserID()
+    {
         return userID;
     }
-    
-    public String getUserPassword(){
-        return userPassword;
+
+    public String getSecurityQ()
+    {
+        return SecurityQ;
     }
-    
-    public void setUserPassword(String newPassword){
-        userPassword = newPassword;
-    }
-    
-    public String getUserStatus(){
-        return userStatus;
-    }
-    
-    public void setUserStatus(String newStatus){
-        userStatus = newStatus;
+
+    public String getSecurityA()
+    {
+        return SecurityA;
     }
 }

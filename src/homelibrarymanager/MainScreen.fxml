@@ -49,7 +49,7 @@
                 </Tab>
                 <Tab fx:id="TB_Users" text="Users">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <fx:include fx:id="UserTab" source="UserTab.fxml"/>
                   </content>
                 </Tab>
               </tabs>

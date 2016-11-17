@@ -24,7 +24,7 @@ public class UserTest extends TestCase {
         System.out.println("getUserName");
         User instance = null;
         String expResult = "";
-        String result = instance.getUserName();
+        String result = instance.getUsername();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -37,7 +37,7 @@ public class UserTest extends TestCase {
         System.out.println("setUserName");
         String newUserName = "";
         User instance = null;
-        instance.setUserName(newUserName);
+        instance.setUsername(newUserName);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -62,7 +62,7 @@ public class UserTest extends TestCase {
         System.out.println("getUserPassword");
         User instance = null;
         String expResult = "";
-        String result = instance.getUserPassword();
+        String result = instance.getPassword();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -75,7 +75,7 @@ public class UserTest extends TestCase {
         System.out.println("setUserPassword");
         String newPassword = "";
         User instance = null;
-        instance.setUserPassword(newPassword);
+        instance.setPassword(newPassword);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -87,7 +87,7 @@ public class UserTest extends TestCase {
         System.out.println("getUserStatus");
         User instance = null;
         String expResult = "";
-        String result = instance.getUserStatus();
+        String result = instance.getType();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -100,7 +100,7 @@ public class UserTest extends TestCase {
         System.out.println("setUserStatus");
         String newStatus = "";
         User instance = null;
-        instance.setUserStatus(newStatus);
+        instance.setType(newStatus);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
