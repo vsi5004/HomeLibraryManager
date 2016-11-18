@@ -30,30 +30,6 @@ public class UserTest extends TestCase {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setUserName method, of class User.
-     */
-    public void testSetUserName() {
-        System.out.println("setUserName");
-        String newUserName = "";
-        User instance = null;
-        instance.setUsername(newUserName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getuserID method, of class User.
-     */
-    public void testGetuserID() {
-        System.out.println("getuserID");
-        User instance = null;
-        String expResult = "";
-        String result = instance.getuserID();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getUserPassword method, of class User.
@@ -64,18 +40,6 @@ public class UserTest extends TestCase {
         String expResult = "";
         String result = instance.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setUserPassword method, of class User.
-     */
-    public void testSetUserPassword() {
-        System.out.println("setUserPassword");
-        String newPassword = "";
-        User instance = null;
-        instance.setPassword(newPassword);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -93,16 +57,5 @@ public class UserTest extends TestCase {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setUserStatus method, of class User.
-     */
-    public void testSetUserStatus() {
-        System.out.println("setUserStatus");
-        String newStatus = "";
-        User instance = null;
-        instance.setType(newStatus);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

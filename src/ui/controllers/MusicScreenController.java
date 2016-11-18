@@ -78,7 +78,7 @@ public class MusicScreenController implements Initializable
         CB_Format.getItems().add(MediaFormat.Record);
         CB_Format.getItems().add(MediaFormat.Tape);
         CB_Format.getItems().add(MediaFormat.Other);
-        
+
         if (editedMedia.getMediaId() != null)
         {
             CB_Format.setValue(MediaFormat.valueOf(editedMedia.getFormat()));
