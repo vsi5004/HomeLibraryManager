@@ -196,7 +196,7 @@ public class MusicScreenController implements Initializable
             LB_ValidationMessage.setText("Please fill in Title, Artist, and Format fields!");
             return false;
         }
-        if (MediaExists(TF_Title.getText(), TF_Artist.getText()) && !LoggedInUser.getEditCurrent())
+        if (editedMedia.getMediaId() == null && MediaExists(TF_Title.getText(), TF_Artist.getText()))
         {
             LB_ValidationMessage.setText("Media item already exists!");
             return false;

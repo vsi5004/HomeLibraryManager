@@ -182,7 +182,7 @@ public class MovieScreenController implements Initializable
             LB_ValidationMessage.setText("Please fill in Title, Director, and Format fields!");
             return false;
         }
-        if (MediaExists(TF_Title.getText(), TF_Director.getText()) && !LoggedInUser.getEditCurrent())
+        if (editedMedia.getMediaId() == null && MediaExists(TF_Title.getText(), TF_Director.getText()))
         {
             LB_ValidationMessage.setText("Media item already exists!");
             return false;
