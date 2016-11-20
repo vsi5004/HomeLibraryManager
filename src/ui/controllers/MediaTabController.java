@@ -37,6 +37,7 @@ import models.Literature;
 import models.Media;
 import models.Movie;
 import models.Music;
+import java.util.function.Predicate;
 
 /**
  * FXML Controller class
@@ -129,6 +130,27 @@ public class MediaTabController implements Initializable
         for (AppMedia m : Media)
         {
             mediaData.add(transferToMediaModel(m));
+        }
+    }
+    
+    public static Predicate<Media> containsSearchTerm(String searchTerm) 
+    {
+        return p -> p.getTitle().equalsIgnoreCase("term");
+    }
+    
+    public void syncMediaList(String searchTerm)
+    {
+        mediaData.clear();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("HomeLibraryManagerPU");
+        AppMediaJpaController jpaMedia = new AppMediaJpaController(emf);
+        List<AppMedia> Media = jpaMedia.findAppMediaEntities();
+
+        for (AppMedia m : Media)
+        {
+            if(transferToMediaModel(m).getTitle().equals(searchTerm))
+            {
+                mediaData.add(transferToMediaModel(m));
+            }
         }
     }
 

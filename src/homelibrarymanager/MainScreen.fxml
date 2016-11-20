@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.collections.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="761.0" prefWidth="1174.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="761.0" prefWidth="1174.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MainScreenController">
     <children>
       <BorderPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <top>
@@ -39,7 +51,7 @@
               <tabs>
                 <Tab fx:id="TB_Media" text="Media">
                   <content>
-                    <fx:include fx:id="MediaTab" source="MediaTab.fxml"/>
+                    <fx:include fx:id="MediaTab" source="MediaTab.fxml" />
                   </content>
                 </Tab>
                 <Tab fx:id="TB_Collections" text="Collections">
@@ -49,7 +61,7 @@
                 </Tab>
                 <Tab fx:id="TB_Users" text="Users">
                   <content>
-                    <fx:include fx:id="UserTab" source="UserTab.fxml"/>
+                    <fx:include fx:id="UserTab" source="UserTab.fxml" />
                   </content>
                 </Tab>
               </tabs>
@@ -60,12 +72,23 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <Label fx:id="LB_Sort" layoutX="14.0" layoutY="14.0" text="Sort" />
+                        <Label fx:id="LB_Sort" layoutX="14.0" layoutY="14.0" text="Search" />
+                        <BorderPane layoutY="40.0" prefHeight="138.0" prefWidth="158.0">
+                           <bottom>
+                              <Button id="BT_Search" fx:id="BT_Search" mnemonicParsing="false" onMouseClicked="#BT_SearchClicked" text="Search" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                           </bottom>
+                           <center>
+                              <TextField id="TF_SearchTerm" fx:id="TF_SearchTerm" promptText="Search Term" BorderPane.alignment="CENTER" />
+                           </center>
+                           <top>
+                              <ChoiceBox id="CB_SearchField" fx:id="CB_SearchField" prefHeight="28.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                           </top>
+                        </BorderPane>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <Label fx:id="LB_Search" layoutX="14.0" layoutY="14.0" text="Search" />
+                        <Label fx:id="LB_Search" layoutX="14.0" layoutY="14.0" text="Sort" />
                      </children>
                   </AnchorPane>
               </items>

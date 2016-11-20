@@ -10,6 +10,7 @@ import Enums.MediaType;
 import dbClasses.AppMedia;
 import homelibrarymanager.HomeLibraryManager;
 import homelibrarymanager.LoggedInUser;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -17,7 +18,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -26,7 +30,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,11 +58,22 @@ public class MainScreenController implements Initializable {
     private Button BT_UserLogOut;
     @FXML
     private Label LB_AddMediaError;
+    @FXML
+    private Button BT_Search;
+    //@FXML
+    //private ComboBox<String> CB_SearchField;
+    @FXML
+    private TextField TF_SearchTerm;
     
     HomeLibraryManager manager = new HomeLibraryManager();
+    String searchTerm;
     
     @FXML
     private Tab TB_Collections;
+    @FXML
+    private Tab TB_Media;
+    @FXML
+    private Tab TB_Users;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,6 +118,30 @@ public class MainScreenController implements Initializable {
         LoggedInUser.setLastPage("Main");
         Stage stage = (Stage) BT_UserLogOut.getScene().getWindow();
         manager.gotoLoginScreen(stage);
+    }
+    
+    @FXML
+    private void BT_SearchClicked(MouseEvent event) throws Exception {
+        searchTerm = TF_SearchTerm.getText();
+        System.out.println("Search clicked " + TF_SearchTerm.getText());
+        if (TF_SearchTerm.getText() != null) 
+        {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/homelibrarymanager/MediaTab.fxml"));
+            Parent root = (Parent) loader.load();
+            MediaTabController controller = (MediaTabController) loader.getController();
+            controller.syncMediaList(searchTerm);
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Results for " + "type" + TF_SearchTerm.getText());
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(BT_Search.getScene().getWindow());
+            stage.showAndWait();
+        }
+        else 
+        {
+            System.out.println("Null search term");
+        }
     }
 
 }
