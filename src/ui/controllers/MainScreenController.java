@@ -23,11 +23,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -74,6 +76,16 @@ public class MainScreenController implements Initializable {
     private Tab TB_Media;
     @FXML
     private Tab TB_Users;
+    @FXML
+    private TextField TF_CollectionName;
+    @FXML
+    private TextArea TA_CollectionDesc;
+    @FXML
+    private Label LB_AddCollectionError;
+    @FXML
+    private Button BT_AddCollection;
+    @FXML
+    private ChoiceBox<?> CB_SearchField;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -142,6 +154,11 @@ public class MainScreenController implements Initializable {
         {
             System.out.println("Null search term");
         }
+    }
+
+    @FXML
+    private void HandleBT_AddCollectionClicked(MouseEvent event)
+    {
     }
 
 }
