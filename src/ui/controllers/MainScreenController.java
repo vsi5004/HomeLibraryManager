@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +37,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import models.CollectionList;
 
 /**
  *
@@ -90,6 +93,13 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LB_UserGreeting.setText("Hello, " + LoggedInUser.getUserName());
+        try
+        {
+            CollectionList collection = new CollectionList();
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
         
     }
 
