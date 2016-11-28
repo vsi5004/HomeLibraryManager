@@ -159,6 +159,14 @@ public class MainScreenController implements Initializable {
     @FXML
     private void HandleBT_AddCollectionClicked(MouseEvent event)
     {
+        if (TF_CollectionName.getText() != null) {
+            Stage stage = (Stage) BT_AddCollection.getScene().getWindow();
+            manager.gotoCollectionScreen(stage, TF_CollectionName.getText(), TA_CollectionDesc.getText());
+            
+        }
+        else{
+            LB_AddCollectionError.setText("Enter Collection Name!");
+        }
     }
 
 }

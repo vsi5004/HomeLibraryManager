@@ -11,6 +11,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Media;
 import ui.controllers.LoginScreenController;
@@ -118,5 +120,11 @@ public class HomeLibraryManager extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void gotoCollectionScreen(Stage stage, String collectionName, String collectionDesc)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }
