@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package homelibrarymanager;
+package ui.controllers;
 
+import homelibrarymanager.HomeLibraryManager;
+import homelibrarymanager.LoggedInUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -43,6 +46,14 @@ public class CollectionScreenController implements Initializable
     private Collection c;
     HomeLibraryManager manager = new HomeLibraryManager();
     private CollectionList collection;
+    @FXML
+    private TableView<?> TV_AllMedia;
+    @FXML
+    private Button BT_AddToCollection;
+    @FXML
+    private Button BT_RemoveFromCollection;
+    @FXML
+    private TableView<?> TV_CollectionMedia;
 
     /**
      * Initializes the controller class.
@@ -86,7 +97,7 @@ public class CollectionScreenController implements Initializable
         manager.gotoMainScreen(stage);
     }
 
-    void initEditCollection(Collection edit) throws IOException
+    public void initEditCollection(Collection edit) throws IOException
     {
         collection = new CollectionList();
         if (collection.getCollectionByName(edit.getName()) == null)
@@ -96,6 +107,16 @@ public class CollectionScreenController implements Initializable
         {
             c = collection.getCollectionByName(edit.getName());
         }
+    }
+
+    @FXML
+    private void HandleBT_AddToCollectionClicked(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void HandleBT_RemoveFromCollectionClicked(MouseEvent event)
+    {
     }
 
 }

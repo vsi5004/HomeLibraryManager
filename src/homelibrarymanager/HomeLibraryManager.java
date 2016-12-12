@@ -5,6 +5,7 @@
  */
 package homelibrarymanager;
 
+import ui.controllers.CollectionScreenController;
 import Enums.MediaType;
 import java.io.IOException;
 import javafx.application.Application;
@@ -22,6 +23,7 @@ import ui.controllers.MovieScreenController;
 import ui.controllers.LiteratureScreenController;
 import ui.controllers.MusicScreenController;
 import ui.controllers.UserScreenController;
+import ui.controllers.CollectionScreenController;
 
 /**
  *
