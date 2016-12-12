@@ -54,8 +54,6 @@ public class MainScreenController implements Initializable {
     @FXML
     private Button BT_EditUserInfo;
     @FXML
-    private Label LB_Sort;
-    @FXML
     private Label LB_Search;
     @FXML
     private Label LB_UserGreeting;
@@ -72,6 +70,7 @@ public class MainScreenController implements Initializable {
     
     HomeLibraryManager manager = new HomeLibraryManager();
     String searchTerm;
+    CollectionList collection;
     
     @FXML
     private Tab TB_Collections;
@@ -95,7 +94,7 @@ public class MainScreenController implements Initializable {
         LB_UserGreeting.setText("Hello, " + LoggedInUser.getUserName());
         try
         {
-            CollectionList collection = new CollectionList();
+            collection = new CollectionList();
         } catch (IOException ex)
         {
             ex.printStackTrace();

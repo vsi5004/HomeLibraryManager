@@ -63,7 +63,7 @@
                 </Tab>
                 <Tab fx:id="TB_Collections" text="Collections">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <fx:include fx:id="CollectionTab" source="CollectionTab.fxml" />
                   </content>
                 </Tab>
                 <Tab fx:id="TB_Users" text="Users">
@@ -75,7 +75,7 @@
             </TabPane>
          </center>
          <right>
-            <SplitPane dividerPositions="0.4880239520958084" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+            <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
@@ -85,17 +85,15 @@
                               <Button id="BT_Search" fx:id="BT_Search" mnemonicParsing="false" onMouseClicked="#BT_SearchClicked" text="Search" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </bottom>
                            <center>
-                              <TextField id="TF_SearchTerm" fx:id="TF_SearchTerm" promptText="Search Term" BorderPane.alignment="CENTER" />
+                              <TextField id="TF_SearchTerm" fx:id="TF_SearchTerm" promptText="Search Term" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </BorderPane.margin></TextField>
                            </center>
                            <top>
                               <ChoiceBox id="CB_SearchField" fx:id="CB_SearchField" prefHeight="28.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
                            </top>
                         </BorderPane>
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                     <children>
-                        <Label fx:id="LB_Search" layoutX="14.0" layoutY="14.0" text="Sort" />
                      </children>
                   </AnchorPane>
               </items>

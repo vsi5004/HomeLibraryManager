@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane id="CollectionTab" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.CollectionTabController">
+    <children>
+        <TableView fx:id="TV_Collections" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <columns>
+                <TableColumn fx:id="TC_Name" prefWidth="180.0" text="Name" />
+                <TableColumn fx:id="TC_Description" prefWidth="180.0" text="Description" />
+                <TableColumn fx:id="TC_Edit" prefWidth="45.0" />
+                <TableColumn fx:id="TC_Delete" prefWidth="60.0" />
+            </columns>
+        </TableView>
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+</AnchorPane>
