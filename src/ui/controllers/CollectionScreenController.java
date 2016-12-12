@@ -13,6 +13,7 @@ import homelibrarymanager.HomeLibraryManager;
 import homelibrarymanager.LoggedInUser;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -73,7 +74,7 @@ public class CollectionScreenController implements Initializable
     private TableColumn<Media, String> TC_CollectionTitle;
     @FXML
     private TableColumn<Media, String> TC_CollectionCreator;
-    
+
     private Collection c;
     HomeLibraryManager manager = new HomeLibraryManager();
     private CollectionList collection;
@@ -89,15 +90,15 @@ public class CollectionScreenController implements Initializable
         TF_Name.setText(c.getName());
         TF_Name.setEditable(false);
         TA_Description.setText(c.getDescription());
-        
+
         TC_AllMediaTitle.setCellValueFactory(new PropertyValueFactory<Media, String>("title"));
         TC_AllMediaCreator.setCellValueFactory(new PropertyValueFactory<Media, String>("creator"));
         TC_CollectionTitle.setCellValueFactory(new PropertyValueFactory<Media, String>("title"));
         TC_CollectionCreator.setCellValueFactory(new PropertyValueFactory<Media, String>("creator"));
-        
+
         syncCollectionMedia();
         syncAllMedia();
-        
+
         TV_AllMedia.setItems(allMedia);
         TV_CollectionMedia.setItems(collectionMedia);
 
@@ -107,14 +108,15 @@ public class CollectionScreenController implements Initializable
     private void HandleBT_SaveCollectionClicked(MouseEvent event) throws Exception
     {
 
+        c.setDescription(TA_Description.getText());
+        c.setItems(convertFromObservable());
+
         //if it's a new collection
         if (!collection.existsInCollections(TF_Name.getText()))
         {
             collection.getAllCollections().add(c);
-        } else
-        {//if collection already exists
-            c.setDescription(TA_Description.getText());
         }
+
         collection.writeCollectionsFile();
 
         Stage stage = (Stage) BT_SaveCollection.getScene().getWindow();
@@ -133,6 +135,16 @@ public class CollectionScreenController implements Initializable
         manager.gotoMainScreen(stage);
     }
 
+    private ArrayList<Media> convertFromObservable()
+    {
+        ArrayList mediaList = new ArrayList();
+        for (Media m : collectionMedia)
+        {
+            mediaList.add(m);
+        }
+        return mediaList;
+    }
+
     public void initEditCollection(Collection edit) throws IOException
     {
         collection = new CollectionList();
@@ -148,17 +160,30 @@ public class CollectionScreenController implements Initializable
     @FXML
     private void HandleBT_AddToCollectionClicked(MouseEvent event)
     {
+        Media m = TV_AllMedia.getSelectionModel().getSelectedItem();
+        if (m != null)
+        {
+            collectionMedia.add(m);
+            allMedia.remove(m);
+        }
     }
 
     @FXML
     private void HandleBT_RemoveFromCollectionClicked(MouseEvent event)
     {
+        Media m = TV_CollectionMedia.getSelectionModel().getSelectedItem();
+        if (m != null)
+        {
+            allMedia.add(m);
+            collectionMedia.remove(m);
+        }
     }
 
     private void syncCollectionMedia()
     {
         collectionMedia.clear();
-        for(Media m: c.getItems()){
+        for (Media m : c.getItems())
+        {
             collectionMedia.add(m);
         }
     }
@@ -173,12 +198,13 @@ public class CollectionScreenController implements Initializable
         for (AppMedia m : dbMedia)
         {
             Media media = transferToMediaModel(m);
-            if(!c.inCollectionByTC(media.getTitle(), media.getCreator())){
+            if (!c.inCollectionByTC(media.getTitle(), media.getCreator()))
+            {
                 allMedia.add(media);
             }
         }
     }
-    
+
     //Method that converts database model into program model for display in table
     private Media transferToMediaModel(AppMedia dbMedia)
     {
