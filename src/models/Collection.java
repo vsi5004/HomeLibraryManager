@@ -25,6 +25,15 @@ public class Collection implements Serializable
         this.Name = name;
         this.Description = desc;
     }
+    
+    public boolean inCollectionByTC(String title, String creator){
+        for(Media m: Items){
+            if(m.getTitle().equalsIgnoreCase(title) && m.getCreator().equalsIgnoreCase(creator)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public String getID()
     {

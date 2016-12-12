@@ -67,8 +67,8 @@
                               <Label text="All Media" />
                               <TableView fx:id="TV_AllMedia">
                                 <columns>
-                                  <TableColumn prefWidth="150.0" text="Name" />
-                                  <TableColumn prefWidth="150.0" text="Creator" />
+                                  <TableColumn fx:id="TC_AllMediaTitle" prefWidth="150.0" text="Title" />
+                                  <TableColumn fx:id="TC_AllMediaCreator" prefWidth="150.0" text="Creator" />
                                 </columns>
                               </TableView>
                            </children>
@@ -80,8 +80,8 @@
                               <Label alignment="TOP_LEFT" text="Collection Media" />
                               <TableView fx:id="TV_CollectionMedia">
                                 <columns>
-                                  <TableColumn prefWidth="150.0" text="Name" />
-                                  <TableColumn prefWidth="150.0" text="Creator" />
+                                  <TableColumn fx:id="TC_CollectionTitle" prefWidth="150.0" text="Title" />
+                                  <TableColumn fx:id="TC_CollectionCreator" prefWidth="150.0" text="Creator" />
                                 </columns>
                               </TableView>
                            </children>
