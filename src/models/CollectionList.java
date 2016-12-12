@@ -53,7 +53,7 @@ public class CollectionList
         Writer writer = new FileWriter(FileName);
 
         Gson gson = new GsonBuilder().create();
-        gson.toJson(allCollections, writer);
+        gson.toJson(getAllCollections(), writer);
 
         writer.close();
     }
@@ -89,7 +89,7 @@ public class CollectionList
         }
 
         col.setItems(mediaCol);
-        allCollections.add(col);
+        getAllCollections().add(col);
     }
 
     //Method that converts database model into program model for display in table
@@ -139,5 +139,10 @@ public class CollectionList
         }
 
         return null;
+    }
+
+    public ArrayList<Collection> getAllCollections()
+    {
+        return allCollections;
     }
 }

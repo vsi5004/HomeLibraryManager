@@ -12,7 +12,7 @@
         <TableView fx:id="TV_Collections" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <columns>
                 <TableColumn fx:id="TC_Name" prefWidth="180.0" text="Name" />
-                <TableColumn fx:id="TC_Description" prefWidth="180.0" text="Description" />
+                <TableColumn fx:id="TC_Description" prefWidth="380.0" text="Description" />
                 <TableColumn fx:id="TC_Edit" prefWidth="45.0" />
                 <TableColumn fx:id="TC_Delete" prefWidth="60.0" />
             </columns>
