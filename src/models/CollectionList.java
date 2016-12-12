@@ -65,6 +65,11 @@ public class CollectionList
         }
         return null;
     }
+    
+    public void removeByName(String name) throws IOException{
+        allCollections.remove( getCollectionByName(name));
+        writeCollectionsFile();
+    }
 
     public void writeCollectionsFile() throws IOException
     {
