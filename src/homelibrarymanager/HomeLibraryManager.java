@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Collection;
 import models.Media;
 import ui.controllers.LoginScreenController;
 import ui.controllers.MainScreenController;
@@ -121,9 +122,13 @@ public class HomeLibraryManager extends Application {
         stage.show();
     }
 
-    public void gotoCollectionScreen(Stage stage, String collectionName, String collectionDesc)
+    public void gotoCollectionScreen(Stage stage, Collection toEdit) throws IOException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CollectionScreen.fxml"));
+        CollectionScreenController controller = new CollectionScreenController();
+        controller.initEditCollection(toEdit);
+        loader.setController(controller);
+        setupScene(stage, "Home Library Manager Collection", loader);
     }
 
     

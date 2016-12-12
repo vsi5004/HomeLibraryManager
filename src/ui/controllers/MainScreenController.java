@@ -37,14 +37,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import models.Collection;
 import models.CollectionList;
 
 /**
  *
  * @author Ivan
  */
-public class MainScreenController implements Initializable {
-
+public class MainScreenController implements Initializable
+{
+    
     @FXML
     private ComboBox<String> CB_MediaType;
     @FXML
@@ -88,9 +90,10 @@ public class MainScreenController implements Initializable {
     private Button BT_AddCollection;
     @FXML
     private ChoiceBox<?> CB_SearchField;
-
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         LB_UserGreeting.setText("Hello, " + LoggedInUser.getUserName());
         try
         {
@@ -101,81 +104,96 @@ public class MainScreenController implements Initializable {
         }
         
     }
-
+    
     @FXML
-    private void HandleBT_AddMediaClicked(MouseEvent event) throws Exception {
-        if (CB_MediaType.getValue() != null) {
+    private void HandleBT_AddMediaClicked(MouseEvent event) throws Exception
+    {
+        if (CB_MediaType.getValue() != null)
+        {
             Stage stage = (Stage) BT_AddMedia.getScene().getWindow();
-            for (MediaType type : MediaType.values()) {
-                if (Objects.equals(CB_MediaType.getValue(), type.getValue())) {
+            for (MediaType type : MediaType.values())
+            {
+                if (Objects.equals(CB_MediaType.getValue(), type.getValue()))
+                {
                     LoggedInUser.setLastPage("Main");
                     manager.gotoMediaScreen(stage, type);
                 }
             }
-        }
-        else{
+        } else
+        {
             LB_AddMediaError.setText("Select a media type!");
         }
-
+        
     }
-
+    
     @FXML
-    private void HandleBT_AddUserClicked(MouseEvent event) throws Exception {
+    private void HandleBT_AddUserClicked(MouseEvent event) throws Exception
+    {
         LoggedInUser.setLastPage("Main");
         Stage stage = (Stage) BT_AddUser.getScene().getWindow();
         manager.gotoUserScreen(stage);
     }
-
+    
     @FXML
-    private void HandleBT_EditUserInfoClicked(MouseEvent event) throws Exception {
+    private void HandleBT_EditUserInfoClicked(MouseEvent event) throws Exception
+    {
         LoggedInUser.setLastPage("Main");
         //LoggedInUser.setEditCurrent(true);
         Stage stage = (Stage) BT_EditUserInfo.getScene().getWindow();
         manager.gotoUserScreen(stage, LoggedInUser.getUserID());
     }
-
+    
     @FXML
-    private void HandleBT_UserLogOut(MouseEvent event) throws Exception {
+    private void HandleBT_UserLogOut(MouseEvent event) throws Exception
+    {
         LoggedInUser.setLastPage("Main");
         Stage stage = (Stage) BT_UserLogOut.getScene().getWindow();
         manager.gotoLoginScreen(stage);
     }
     
     @FXML
-    private void BT_SearchClicked(MouseEvent event) throws Exception {
+    private void BT_SearchClicked(MouseEvent event) throws Exception
+    {
         searchTerm = TF_SearchTerm.getText();
         System.out.println("Search clicked " + TF_SearchTerm.getText());
-        if (TF_SearchTerm.getText() != null) 
+        if (TF_SearchTerm.getText() != null)
         {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/homelibrarymanager/MediaTab.fxml"));
             Parent root = (Parent) loader.load();
             MediaTabController controller = (MediaTabController) loader.getController();
             controller.syncMediaList(searchTerm);
-
+            
             stage.setScene(new Scene(root));
             stage.setTitle("Results for " + "type" + TF_SearchTerm.getText());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(BT_Search.getScene().getWindow());
             stage.showAndWait();
-        }
-        else 
+        } else
         {
             System.out.println("Null search term");
         }
     }
-
+    
     @FXML
-    private void HandleBT_AddCollectionClicked(MouseEvent event)
+    private void HandleBT_AddCollectionClicked(MouseEvent event) throws IOException
     {
-        if (TF_CollectionName.getText() != null) {
-            Stage stage = (Stage) BT_AddCollection.getScene().getWindow();
-            manager.gotoCollectionScreen(stage, TF_CollectionName.getText(), TA_CollectionDesc.getText());
-            
-        }
-        else{
+        if (TF_CollectionName.getText() == null || TF_CollectionName.getText().trim().isEmpty())
+        {
             LB_AddCollectionError.setText("Enter Collection Name!");
+            
+        }else
+        {
+            if (collection.existsInCollections(TF_CollectionName.getText()))
+            {
+                LB_AddCollectionError.setText("Collection exists!");
+            } else
+            {
+                Stage stage = (Stage) BT_AddCollection.getScene().getWindow();
+                Collection c = new Collection(TF_CollectionName.getText(), TA_CollectionDesc.getText());
+                manager.gotoCollectionScreen(stage, c);
+            }
         }
     }
-
+    
 }

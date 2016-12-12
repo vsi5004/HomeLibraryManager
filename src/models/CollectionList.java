@@ -47,8 +47,26 @@ public class CollectionList
             this.readCollectionsFile();
         }
     }
+    
+    public boolean existsInCollections(String name){
+        for(Collection c: allCollections){
+            if(c.getName().equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Collection getCollectionByName(String name){
+        for(Collection c: allCollections){
+            if(c.getName().equalsIgnoreCase(name)){
+                return c;
+            }
+        }
+        return null;
+    }
 
-    private void writeCollectionsFile() throws IOException
+    public void writeCollectionsFile() throws IOException
     {
         Writer writer = new FileWriter(FileName);
 

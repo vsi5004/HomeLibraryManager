@@ -43,7 +43,7 @@ public class EditCollectionButton extends TableCell<Collection, Boolean>
                 LoggedInUser.setLastPage("Main");
                 try
                 {
-                    //manager.gotoCollectionScreen(stage, toEdit.getUserID());
+                    manager.gotoCollectionScreen(stage, toEdit);
                 } catch (Exception ex)
                 {
                     Logger.getLogger(EditCollectionButton.class.getName()).log(Level.SEVERE, null, ex);
